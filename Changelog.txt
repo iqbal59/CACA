@@ -1,0 +1,576 @@
+ChangeLogs
+
+OTA Release V1.94 (27/08/19)
+
+New Features:
+1. Added kanban view (Drag and Drop) for leads.
+2. Added amount format settings with currency position. (For now, this will affect the PDF's and share pages only (Applied only on default PDF's). To get the changes in your PDF's, restore your pdf's to default using editor.)
+3. Now all logs can be seen by expanding the panel logs.
+4. Added new email template for appointments.
+5. Added Bulgarian Language.
+6. Item description's can be added with line breaks.
+7. Introduced Modules tab in settings (Some additional app enhancements will be added as modules).
+
+Bug fixes & Improvements:
+1. Fixed Roles issue (Now, only admin role users can create, delete the users).
+2. Fixed data loading issues in customer area.
+3. Fixed login issue for duplicate users found in database.
+4. Added logs for each create, delete, update actions.
+5. Fixed staff's grid view pagination issue.
+6. Improved todo create button.
+7. Fixed language encoding issue for % strings.
+8. Fixed database table size errors, caused in some customer servers.
+9. Fixed accept button in proposals view after customer's action (Customer area).
+
+
+ChangeLog
+OTA Release V1.93 (14/08/19)
+
+New Features:
+1. Added option to auto create contact on customer create.
+2. Projects can now be viewed in both list and grid view.
+3. Project list view column can be filtered(only the selected columns will be displayed).
+4. Added Roles function to give more detailed control over staff privileges.
+
+Bug fixes & Improvements:
+1. Accounts total issue fixed.
+2. Fixed Projects status graph issue.
+3. Staff, Customers, Leads and Vendors cannot be deleted if they are linked somewhere else.
+4. Improved Payment gateways.
+5. Rearranged Leaf and Top Menu.
+6. Fixed Date time format for Menu Task Timer.
+7. Improved User Profile side toggle.
+8. Improved Error Notifications.
+9. Only Admin can change Calendar colors.
+10. Fixed language encoding issue.
+11. Improved Custom Fields and Baqckup Restore listing.
+12. Fixed language not found issue.
+
+
+
+OTA Release V1.92 (27/06/19)
+
+New Features:
+1. Added projects and tasks into calendar with color-picker.
+
+Bug fixes & Improvements:
+1. Fixed invoices in customer area.
+2. Fixed invoices & proposals pdf issue.
+3. Improved data listing with device responsive.
+4. Improved event create with color-picker.
+
+
+OTA Release V1.92 (27/06/19)
+
+New Features:
+1. Added projects and tasks into calendar with color-picker.
+
+Bug fixes & Improvements:
+1. Fixed invoices in customer area.
+2. Fixed invoices & proposals pdf issue.
+3. Improved data listing with device responsive.
+4. Improved event create with color-picker.
+
+
+OTA Release V1.9 (27/06/19)
+
+New Features:
+1. Added reports export functionality.
+2. Now reports can be exported in CSV/PDF format of any area(like invoices, projects etc.)
+3. Now screen loader can be changed or disable in settings->customization.
+
+Bug fixes & Improvements:
+1. Fixed privileges issue in staff (Now only admin can edit/create/delete the staff details)
+2. Fixed projects view/edit issue, only admin & project member can view the project.
+3. Improved app performance & loading time.
+4. Fixed customer area issue.
+5. Fixed the issue of displaying dates in date-picker.
+6. Improved staffs listing page.
+7. Fixed left menu issue of displaying tasks without privilege.
+8. Fixed the tickets issue.
+
+
+OTA Release V1.9 (27/06/19)
+
+New Features:
+1. Now pdf can be attached with email templates.
+2. Added Deposits.
+3. Added editor to edit files (Language file, pdf design files, countries data, states data)
+
+Bug fixes & Improvements:
+1. Improved Accounts section.
+2. Fixed running timer menu color.
+3. Improved menu icons.
+4. Fixed daily license check issue.
+5. Improved search section with numbers (like invoice number: INV-1).
+6. Fixed all sidenav's width.
+7. Fixed app loading UI.
+
+
+
+
+OTA Release V1.8 (03/06/19) 
+
+New Features:
+1. Introduced Purchasing module.
+2. Added purchase payment module.
+3. Added document series to all functions (like INV-10001).
+
+Bug fixes & Improvements:
+1. Fixed resposive issue for customers, products, vendors.
+2. Improved staff overview page.
+3. Fixed panel responsive issue.
+4. Fixed merge fields listing for email templates.
+5. Fixed the translation issue in the staff work details.
+6. Added dynamic file upload for customers and products import.
+7. Staff and previliges merged together in one step.
+8. Fixed date format.
+
+OTA Release V1.7 (22/05/19) 
+
+New Features:
+
+1. Introduced Vendors with group.
+2. Improved Application Security.
+3. Added dynamic page loading for invoices and products.
+4. Task Timer: Now you can run multiple task timers.
+5. Added Customer groups.
+6. Added dropdown list of states.
+
+Bug fixes & Improvements:
+1. Added dynamic file upload for tasks, tickets in customer area and profile change. 
+2. Imroved tickets in Customer area.
+3. Improved OTA update feature.
+4. Improved order pdf.
+5. Fixed orders prefix issue.
+
+OTA Release V1.6.2 (15/05/19) 
+
+Bug fixes & Improvements:
+1. Codeignitor Lig updated to 3.1.10 stable branch. 
+2. AngularJS Lib Updated to 1.7.8 stable branch.
+3. Currency & countries data moved from db to JSON file for better compatability with encoding.
+4. Fixed events issue (reported by customer).
+5. Fixed leads listing issue.
+6. Now category/department cannot be deleted, if used somewhere.
+7. Added angular file uploader to upload files without refreshing page.
+8. Introduced timezone in user profile.
+9. Updated quote request email template body.
+10. Fixed internal recurring error.
+
+
+OTA Release V1.6.2 (15/05/19) 
+
+Bug fixes & Improvements:
+1. Codeignitor Lig updated to 3.1.10 stable branch. 
+2. AngularJS Lib Updated to 1.7.8 stable branch.
+3. Currency & countries data moved from db to JSON file for better compatability with encoding.
+4. Fixed events issue (reported by customer).
+5. Fixed leads listing issue.
+6. Now category/department cannot be deleted, if used somewhere.
+7. Added angular file uploader to upload files without refreshing page.
+8. Introduced timezone in user profile.
+9. Updated quote request email template body.
+10. Fixed internal recurring error.
+
+
+OTA Release V1.6 (12/04/19) 
+
+New Feature:
+Web leads: Now with custom fields and a new layout column.
+Project: Now you can create proposals inside of project.
+Project: Project report can be generated in pdf now.
+Customer Area: Clients can request for a quote + 2 email templates added.
+Proposals: Staff can convert quote to proposal.
+Emails: Sent emails can be deleted from email activities.
+App Update: OTA updates now shows in notification.
+Bug fixes & Improvements:
+Task Timer: delete option added with better design for multi tasks (Future).
+PDF converter: Fixed PDF issue for PHP 7.3
+Notifications: Added mark notifications as read.
+Integer length increased from 11 to 20.
+Leads form layout improved
+
+
+Codecanyon Update( Version 1.5.3 ) (29/03/19) 
+Changelog (29/03/19)
+
+New Features:
+1. Added a new section in settings to run custom SQL queries.
+
+Bug fixes & Improvements:
+2. Fixed email issue of peer certificate match.
+3. Added mandatory fields for leads, proposal and invoices. 
+4. Fixed invoice recurring issue on invoice update.
+5. Added encryption for your smtp password. 
+6. Added email sender name field in email settings.
+7. Fixed Stripe and Paypal payment gateway issue as reported by customer. 
+8. Fixed timesheet update issue. 
+9. Added send password change email for customer contact. 
+10. Removed mcrypt dependecy from the application (please report issue, if found). 
+11. Improved Spanish translation (Contributed by Victor Hernandez). 
+12. Improved app installation section with all required extensions.
+13. Application technical details can be seen from settings. 
+
+OTA Update( Version 1.5.2 ) (22/03/19) 
+
+Changelog (22/03/19)
+New Features:
+1. Added separate section for managing timesheets with privileges.
+2. Added New fields for custom css and custom script in header and footer.
+3. Added a new email template for orders.
+
+Bug fixes & Improvements:
+4. Fixed email sending issue from orders.
+
+OTA Update( Version 1.5.1 ) (20/03/19) 
+
+Changelog (20/03/19)
+New Features:
+1. Added rebranding customization.
+2. Financial docs prefix added.
+3. Changing the status of project can be done projects listing.
+4. Now customer will be able to add notes in project.
+5. Now customer will be upload the files in project.
+6. Added 2 new email templates for projects.
+7. Added edit and delete functionality for notes in project.
+
+Bug fixes & Improvements:
+8. Added project_description field for project email templates.
+9. Fixed project responsiveness as reported by user.
+10. Fixed project responsiveness.
+11. Important fields made mandatory project, staff, customer.
+12. Fixed duplication of adding people in project.
+13. Uploaded files can be previewed in projects.
+14. Fixed OTA update script error.
+15. Fixed OTA update cache data issue.
+
+OTA Update( Version 1.5 ) (12/03/19) 
+
+Changelog (12/03/19)
+New Features:
+1. Added new payment gateways(CCAvenue, PayUmoney, Stripe, Razorpay).
+2. Added Italian language.
+
+Improvements:
+3. Added default payment method for Customer
+4. default payment method for Invoice.
+5. Added payments details in invoice pdf.
+OTA Update( Version 1.4 ) (26/02/19) 
+
+Changelog (26/02/19)
+New Features:
+1. Added a new role: Tax consultant.
+2. New Expense listing layout (Documentation).
+3. Added recurring expenses (Documentation).
+4. Added receipt upload in expenses
+5. Added PDF print for expenses.
+6. Added Email templates for internal/external expenses.
+7. Language selection now possible on logon.
+8. Introduced a new dashboard for tax consultant.
+
+Bug Fixes and Improvements:
+9. Now you can select different logo for nav and pdf's in settings.
+10. Now staff has access to change his password and profile image.
+11. Improved notifications and logs listing in staff.
+12. Minor menu link fixed.
+13. Improved proposal email template.
+14. Language changing is now instant.
+Codecanyon( Version 1.3 ) 15/02/2019
+
+Changelog (15/02/19) 
+New Features:
+1. Added Online Web Leads 
+
+Bug Fixes and Improvements:
+1. Fixed invoice recurring issue
+2. Translations improvements (From hard coded to lang file).
+3. Improved version display.
+OTA Update( Version 1.2.2 ) 12/02/2019
+
+Changelog (12/02/19) 
+
+Bug Fixes and Improvements:
+1. Fixed notifications redirecting issue in customer/client area.
+2. Fixed invoice recurring issue.
+3. Added invoice recurring email template.
+4. Added lead submission email template.
+5. Fixed proposal comment mandatory in customer/client area.
+OTA Update( Version 1.2.1 ) 06/02/2019
+
+Changelog (06/02/19) 
+
+Bug Fixes and Improvements:
+1. Responsive menu list items updated (calendar, email templates, reports etc.).
+2. Fixed responsive menu list issue in customer area.
+Codecanyon( Version 1.2 ) 04/02/2019
+
+Changelog (04/02/19) 
+New Features:
+1. Added application files debug functionality.
+Bug Fixes and Improvements:
+2. Improved login and forgot password pages.
+3. Improved security in customer area for tickets and projects.
+4. Fixed bugs from last release 1.1.9.1 (Custom fields).
+5. Fixed reminder delete button issue from customer and leads.
+6. 2 email templates added for customer area.
+OTA Update( Version 1.1.9.1 ) 30/01/2019
+
+Changelog (30/01/19) 
+New Features:
+1. Now you will be able to see all sent emails.
+
+Bug Fixes and Improvements:
+2. Fixed bugs from release 1.1.9.
+3. Fixed customers contact update issue.
+OTA Update( Version 1.1.9 ) 28/01/2019
+
+Changelog (28/01/19) 
+New Features:
+1. Email Templates:Now you will be able to customize all notification emails from the app.
+(You need to Enable the role email authorization of the admin profile to enable this new menu item)
+
+Bug Fixes and Improvements:
+2. Fixed customer contacts listing issue.
+3. Menu tablet view responsiveness.
+4. Partial Brazilian(Portuguese_BR) language translation update.
+5. Improved Todo view with mandatory.
+6. Fixed milestone edit and delete button issue.
+OTA Update( Version 1.1.8 ) 14/01/2019
+
+Changelog (14/01/19) 
+New Features:
+1. Clock-in timer: Added clock-in clock-out in main menu for tasks
+2. Tickets in projects: Admin/user can create tickets from inside of projects
+
+Bug Fixes and Improvements:
+4.Task timer improved.
+5. Menu spacing responsive issue fixed.
+6. Added list view in tickets.
+OTA Update( Version 1.1.7 ) 07/01/2019
+
+Changelog (07/01/19) 
+New Features:
+1. Reports Overview, First iteration of reports, We will improve it in future releases.
+2. Project Templates: You can now create templates and then duplicate them to manage Projects. 
+3. Global Search: First version of universal search, Helps immensely with getting to your data.
+Codecanyon Update( Version 1.1.6 ) 25/12/2018
+
+Changelog (25/12/18) 
+New Features:
+1. Import/Export for Customers, Leads, Products.  
+2. Backups/Restore for Database. 
+Bug Fixes
+3. Projects Upload file issue. 
+4. OTA version check skip bug.
+Misc: 
+5. French Language file update(
+OTA Update( Version 1.1.5 ) 15/12/2018
+
+Changelog (15/12/18) 
+
+Project Management Enhancement:
+1. Added project services : Now you can add services in project by selecting product by categories. 
+2. Expenses popup: Now you can view expense details in the same screen itself in popup. 
+3: Invoice Convert: Now you will have two options to convert the project into invoice. 
+a. Convert into invoice with project value and services items with quantity (Invoice total will be project value). 
+b. Convert into invoice with services value(Invoice total will be calculated by services amount). 
+
+Product / Service Enhancement:
+4. Added product categories(with pie chart) :Now you can add categories and assign these categories in products.
+
+Bug Fixes:
+
+5. Fixed project pinned/unpinned issue.
+6. Fixed project mandatory fields for create/update project.
+7. Fixed product mandatory fields for create/update product.
+8. Fixed mandatory fields for create/update in expenses, task, milestones, upload file and add people.
+9. Fixed language issues for customers calendar(RU).
+OTA Update( Version 1.1.4.1 Veritas ) 11/28/2018
+
+<b>Changelog </b>(28/11/18) 
+
+1. Improvements: Email sending Button.
+2.Fix: Mobile view Projects.
+3. Improvements: Dashboard clock responsive.
+4. Improvements: Staff admin toggle.
+5. Fix: Calendar event delete.
+In This Update ( Version 1.1.4 Veritas (Extended Update) ) 11/25/2018
+Some bug fixes and Feature Updates
+
+Also;
+
+Attention: This update we have introduced remote update, this will allow you to update the application from inside. We might seems some issues initially with this function but it will help us in the future to release updates more quickly. 
+fixed: custom fields update functions, caused PHP dumps. 
+fixed: a bug inside of projects for tasks. 
+fixed: password login issue
+fixed: we now allow to post payments dated in the past.   
+Added: E-mail test button. 
+Added: Capability to remote update files and db directly from our server.(Beta function)
+In This Update ( Version 1.1.3 Veritas (Major Update) ) 11/14/2018
+Some bug fixes and Feature Updates
+
+Also;
+
+Attention: This update is not including migration file, We are sorry for this, please take database backup before you replace with this version. 
+Added custom fields features.
+Added Lead Kanban board.
+Fixed e-mail issue.
+Fixed bugs and layout issues.
+Imroved UI.
+Improved UX.
+Added Ordering system (Beta);
+In This Update ( Version 1.1.2 Vici (Major Update) ) 06/28/2018
+We fixed several bugs.
+
+Also;
+
+Attention: This update is not including migration file, please wait next update for migration tool.
+Changed UI.
+Changed Vertical Menu.
+Changed Profile Design.
+Improved Material Views.
+Fixed PDF Issue.
+Fixed dashboard zero issue.
+Added Quick Transfer between accounts.
+Added Authorize.net Payment Gateway.
+Added Appointments.
+Added Google Calendar Integration Option.
+Changed E-mail Class.
+Added Staff Work plan for appointments.
+Changed area dashboard design.
+Added roles for contacts.
+Database structures changes.
+Added onsite visits.
+Added billing and shipping address for invoices and customer.
+Added discussions for invoices.
+Added tags for leads.
+In This Update ( Version 1.1.1 Vidi ) 02/21/2018
+We fixed several bugs.
+
+Also;
+
+Database structures changes.
+Added recurring invoices.
+Added appointments.
+In This Update ( Version 1.1.0 Veni ) 01/25/2018
+We fixed several bugs.
+
+Also;
+
+Database structures changes.
+Fixed customer area ticket issue.
+Added Google 2-Step Verification
+Expenses category issue fixed.
+Added permissions table in database.
+Menu translation issue is fixed.
+In This Update ( Version 1.0.9 ) 01/1/2018
+We fixed several bugs.
+
+Also;
+
+Added staff based privileges.
+Added delete converted leads button.
+Calendar UI Changed.
+In This Update ( Version 1.0.8 ) 12/23/2017
+We fixed several bugs.
+
+Also;
+
+Database structures changes.
+UI Changed And Improved.
+Re-designed customer area.
+Re-designed lead area.
+Ticket Area Re-designed.
+Added French Language.
+Added Portuguese PT Language.
+Added Spanish Language.
+Invoicing and proposal system changed.
+In This Update ( Version 1.0.7 ) 11/23/2017
+We fixed several bugs.
+
+Also;
+
+Database structures changes.
+Added Project Management
+Added Task Manager.
+Front-end updated with AngularJS.
+Added Local API System
+Ticket Area Re-designed.
+Added French Language.
+Added Portuguese PT Language.
+Added Spanish Language.
+Re-designed customer area.
+Re-designed lead area.
+PHP SQL variables are removed.
+Many php foreach are removed
+Notes re-designed.
+Codeigniter updated.
+Top navbar changed you can customize it on mysql.
+Added Angular MaterialUI Support.
+Added Milestones for project.
+Added expenses for project.
+Added timesheets for tasks.
+In This Update ( Version 1.0.6 ) 10/23/2017
+We fixed several bugs.
+
+Also;
+
+Database structures changes.
+Added proposals.
+Added voice notifications.
+Added reminders.
+Added notes.
+Re-designed customer area.
+Re-designed staff screen.
+Lead modals removed.
+Added lead detail.
+Added reminders in sidebar.
+Added default timezone.
+Removed scrollbar.
+Re-designed customer detail page.
+CI Upgraded PHP version 7.1
+In This Update ( Version 1.0.5 ) 09/23/2017
+We fixed several bugs.
+
+Also;
+
+Re-designed customer area.
+Added reminders for leads.
+Added lead import from csv.
+Fixed invoices discount issue.
+In This Update ( Version 1.0.4 ) 09/21/2017
+We fixed several bugs.
+
+Also;
+
+Added Portugu�s do Brasil language. 
+Added notes for customers. 
+Added notes for leads. 
+Added currency add button in settings. 
+Added language add button in settings. 
+Improved invoices.
+Added PayPal Gateway.
+Fixed lead show add issue.
+Fixed product edit issue
+In This Update ( Version 1.0.3 ) 09/20/2017
+We fixed several bugs.
+
+Also;
+
+Added lead management.
+Re-designed staff home screen.
+Added staff role.
+In This Update ( Version 1.0.2 ) 08/20/2017
+We fixed several bugs.
+
+Also;
+
+Top navbar screen resolution placement issue fixed.
+Money numeral and currency symbol issue fixed.
+Version 1.0.1
+Added russian language.
+Added turkish language.
+Fixed language issue.
+Version 1.0.0
+* Ciuis CRM Version 1.0.0 relased.
