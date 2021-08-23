@@ -283,7 +283,138 @@
       </md-list-item>
     </md-content>
   </div>
-  <ciuis-sidebar></ciuis-sidebar>
+ 
+  <!-- <ciuis-sidebar></ciuis-sidebar> -->
+
+  <div class="main-content container-fluid col-md-3 md-pl-0">
+    <md-toolbar class="toolbar-white">
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate class="pull-left"><strong><?php echo lang('customercontacts')?></strong></h2>
+            <?php if (check_privilege('customers', 'edit')) { ?> 
+                <md-button ng-click="NewContact();get_contact_permissions()" class="md-icon-button md-primary" aria-label="Add contact" ng-cloak>
+                    <md-icon class="ion-person-add"></md-icon>
+                </md-button>
+            <?php } ?>
+        </div>
+    </md-toolbar>
+    <md-content ng-show="!customersLoader" class="bg-white">
+        <md-list flex ng-cloak>
+            <md-list-item class="md-2-line" ng-repeat="contact in contacts" 
+            aria-label="Contact Detail">
+            <div data-letter-avatar="{{contact.name.charAt(0)+contact.surname.charAt(0)}}" class="ticket-area-av-im2 md-avatar text-uppercase"></div>
+            <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                <h3 ng-bind="contact.name+' '+contact.surname"></h3>
+                <p ng-bind="contact.email"></p>
+            </div>
+            <?php if (check_privilege('customers', 'edit')) { ?> 
+                <md-button class="md-icon-button" ng-click="ContactDetail($index)" aria-label="View" style="margin:auto">
+                  <md-icon><i class="ion-compose text-muted"></i></md-icon>
+              </md-button>
+            <?php } if (check_privilege('customers', 'delete')) { ?> 
+              <md-button class="md-icon-button" ng-click="RemoveContact(contact.id)" aria-label="Delete" style="margin:auto">
+                  <md-icon><i class="ion-android-delete text-muted"></i></md-icon>
+              </md-button>
+            <?php } ?>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+</md-content>
+<md-content ng-if="!contacts.length" class="text-center bg-white"><img width="100%"
+    src="<?php echo base_url('assets/img/add_contact.png') ?>" alt=""></md-content>
+</div>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="NewContact" ng-cloak style="width: 450px;">
+        <md-tabs md-selected="tabIndex" md-dynamic-height="" md-border-bottom="">
+            <md-tab label="<?php echo lang('create_contact_title') ?>">
+                <md-content class="md-padding bg-white">
+                  <div class="col-md-12 nopadding">
+                      <md-content layout-padding>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactname') ?></label>
+                            <input type="text" ng-model="newcontact.name" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactsurname') ?></label>
+                            <input type="text" ng-model="newcontact.surname" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactemail') ?></label>
+                            <input type="text" ng-model="newcontact.email" required>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactposition') ?></label>
+                            <input type="text" ng-model="newcontact.position">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactphone') ?></label>
+                            <input type="text" ng-model="newcontact.phone">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('extension') ?></label>
+                            <input type="text" ng-model="newcontact.extension">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactmobile') ?></label>
+                            <input type="text" ng-model="newcontact.mobile">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactskype') ?></label>
+                            <input type="text" ng-model="newcontact.skype">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('contactlinkedin') ?></label>
+                            <input type="text" ng-model="newcontact.linkedin">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label><?php echo lang('address') ?></label>
+                            <input type="text" ng-model="newcontact.address">
+                        </md-input-container>
+                        <md-input-container class="md-block password-input" ng-show="isPrimary">
+                            <label><?php echo lang('password') ?></label>
+                            <input type="text" ng-model="passwordNew" rel="gp" data-size="9" id="nc"
+                            data-character-set="a-z,A-Z,0-9,#">
+                            <md-icon ng-click="getNewPass()" class="ion-refresh" style="display:inline-block;"></md-icon>
+                        </md-input-container>
+                        <md-input-container class="md-block pull-left">
+                            <md-checkbox ng-model="isPrimary"><?php echo lang('primarycontact') ?></md-checkbox>
+                        </md-input-container>
+                        <section >
+                            <md-button ng-click="Contact()"  ng-href="#" class="md-raised md-primary btn-report block-button" ng-disabled="saving == true">
+                                <span ng-hide="saving == true"><?php echo lang('next');?></span>
+                                <md-progress-circular class="white" ng-show="saving == true" md-mode="indeterminate"
+                                md-diameter="20"></md-progress-circular>
+                            </md-button>
+                            <br/><br/><br/><br/>
+                        </section>
+                    </md-content>
+                </div>  
+            </md-content>
+        </md-tab>
+        <md-tab label="<?php echo lang('privileges') ?>">
+         <md-content class="md-padding bg-white">
+             <div layout="row" layout-wrap>
+                 <div flex-gt-xs="100" flex-xs="100" ng-repeat="permission in permissions">
+                     <md-switch ng-model="permission.value"  aria-label="Status"><strong class="text-muted"> {{permission.name}}</strong></md-switch>
+                 </div>
+             </div>
+             <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                 <br>
+                 <md-button ng-click="AddContact()" class="template-button block-button" ng-disabled="saving == true">
+                     <span ng-hide="saving == true"><?php echo lang('create');?></span>
+                     <md-progress-circular class="white" ng-show="saving == true" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                 </md-button>
+                 <br><br>
+             </section>
+         </md-content> 
+     </md-tab>
+ </md-tabs>
+</md-sidenav>
+
+
+
+
+
+
   <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="Update" ng-cloak style="width: 450px;">
     <md-toolbar class="toolbar-white">
       <div class="md-toolbar-tools">
@@ -430,5 +561,5 @@
   lang.convert_text = "<?php echo lang('convertmsg').' '.lang('lead').' '.lang('to').' '.lang('customer')?>";
   lang.convert = "<?php echo lang('convert')?>";    
 </script>
-<?php include_once( APPPATH . 'views/inc/footer.php' );?>
+<?php include_once(APPPATH . 'views/inc/footer.php');?>
 <script src="<?php echo base_url('assets/js/leads.js'); ?>"></script>

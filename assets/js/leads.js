@@ -439,6 +439,7 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 
 	$scope.ReminderForm = buildToggler('ReminderForm');
 	$scope.Update = buildToggler('Update');
+	$scope.NewContact = buildToggler('NewContact');
 
 	function buildToggler(navID) {
 		return function () {
@@ -473,6 +474,10 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 		$scope.getStates($scope.lead.country_id);
 		$scope.leadsLoader = false;
 
+		$http.get(BASE_URL + 'api/contact/' + LEADID).then(function (contact) {
+			$scope.contacts = contact.data;
+		});
+
 		$scope.MarkLeadAs = function (status) {
 			if (status === 1) {
 				$scope.lead.lost = 1;
@@ -497,6 +502,9 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 			var dataObj = $.param({
 				value: $scope.valuOn,
 			});
+
+			
+
 			$http.post(BASE_URL + 'leads/mark_as_lead/' + LEADID, dataObj, config)
 				.then(
 					function (response) {
@@ -587,6 +595,128 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 					}
 				);
 		};
+
+		$scope.Contact = function () {
+			$scope.saving = true;
+			if (!$scope.newcontact) {
+				var dataObj = $.param({
+					name: '',
+					surname: '',
+					phone: '',
+					extension: '',
+					mobile: '',
+					email: '',
+					address: '',
+					skype: '',
+					linkedin: '',
+					position: '',
+					customer: LEADID,
+					isPrimary: $scope.isPrimary,
+					isAdmin: $scope.isAdmin,
+					password: $scope.passwordNew,
+				});
+			} else {
+				var dataObj = $.param({
+					name: $scope.newcontact.name,
+					surname: $scope.newcontact.surname,
+					phone: $scope.newcontact.phone,
+					extension: $scope.newcontact.extension,
+					mobile: $scope.newcontact.mobile,
+					email: $scope.newcontact.email,
+					address: $scope.newcontact.address,
+					skype: $scope.newcontact.skype,
+					linkedin: $scope.newcontact.linkedin,
+					position: $scope.newcontact.position,
+					customer: LEADID,
+					isPrimary: $scope.isPrimary,
+					isAdmin: $scope.isAdmin,
+					password: $scope.passwordNew,
+				});
+			}
+			var posturl = BASE_URL + 'customers/contact/';
+			$http.post(posturl, dataObj, config)
+				.then(
+					function (response) {
+						$scope.tabIndex = 0;
+						$scope.saving = false;
+						if (response.data.success == true) {
+							$scope.tabIndex++;
+						} else {
+							globals.mdToast('error', response.data.message, 6000);
+						}
+					},
+					function (response) {
+						$scope.saving = false;
+					}
+				);
+		};
+
+
+		$scope.saving = false;
+		$scope.AddContact = function () {
+			$scope.saving = true;
+			if (!$scope.newcontact) {
+				var dataObj = $.param({
+					name: '',
+					surname: '',
+					phone: '',
+					extension: '',
+					mobile: '',
+					email: '',
+					address: '',
+					skype: '',
+					linkedin: '',
+					position: '',
+					customer: LEADID,
+					isPrimary: $scope.isPrimary,
+					isAdmin: $scope.isAdmin,
+					password: $scope.passwordNew,
+				});
+			} else {
+				var dataObj = $.param({
+					name: $scope.newcontact.name,
+					surname: $scope.newcontact.surname,
+					phone: $scope.newcontact.phone,
+					extension: $scope.newcontact.extension,
+					mobile: $scope.newcontact.mobile,
+					email: $scope.newcontact.email,
+					address: $scope.newcontact.address,
+					skype: $scope.newcontact.skype,
+					linkedin: $scope.newcontact.linkedin,
+					position: $scope.newcontact.position,
+					customer: LEADID,
+					isPrimary: $scope.isPrimary,
+					isAdmin: $scope.isAdmin,
+					password: $scope.passwordNew,
+					permissions : $scope.permissions,
+				});
+			}
+
+			$http.post(BASE_URL + 'customers/create_contact/', dataObj, config)
+				.then(
+					function (response) {
+						if (response.data.success == true) {
+							globals.mdToast('success', response.data.message);
+							$mdSidenav('NewContact').close();
+							$http.get(BASE_URL + 'api/contact/' + CUSTOMERID).then(function (contact) {
+								$scope.all_contacts = contact.data;
+								$scope.contacts = $filter('filter')($scope.all_contacts, {
+									customer_id: LEADID,
+								});
+							});
+						} else {
+							globals.mdToast('error', response.data.message);
+						}
+						$scope.saving = false;
+					},
+					function (response) {
+						$scope.saving = false;
+					}
+				);
+		};
+
+
+
 	});
 
 	$http.get(BASE_URL + 'leads/leadstatuses').then(function (LeadStatuses) {
