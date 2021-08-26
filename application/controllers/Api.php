@@ -1157,50 +1157,50 @@ class Api extends CIUIS_Controller {
 		echo json_encode( $data_logs );
 	}
 
-	// function contacts() {
-	// 	$contacts = $this->Contacts_Model->get_all_contacts();
-	// 	$permissions = $this->Privileges_Model->get_all_common_permissions();
-	// 	$privileges = $this->Privileges_Model->get_privileges();
-	// 	$data_contacts = array();
-	// 	foreach ( $contacts as $contact ) {
-	// 		$arr = array();
-	// 		foreach ( $privileges as $privilege ) {
-	// 			if ( $privilege[ 'relation' ] == $contact[ 'id' ] && $privilege[ 'relation_type' ] == 'contact' ) {
-	// 				array_push( $arr, $privilege[ 'permission_id' ] );
-	// 			}
-	// 		}
-	// 		$data_privileges = array();
-	// 		foreach ( $permissions as $permission ) {
-	// 			$data_privileges[] = array(
-	// 				'id' => $permission[ 'id' ],
-	// 				'name' => '' . lang( $permission[ 'permission' ] ) . '',
-	// 				'value' => '' . ( array_search( $permission[ 'id' ], $arr ) !== FALSE ) ? true : false . ''
-	// 			);
-	// 		}
-	// 		$data_contacts[] = array(
-	// 			'id' => $contact[ 'id' ],
-	// 			'customer_id' => $contact[ 'customer_id' ],
-	// 			'name' => '' . $contact[ 'name' ] . '',
-	// 			'surname' => '' . $contact[ 'surname' ] . '',
-	// 			'email' => $contact[ 'email' ],
-	// 			'phone' => $contact[ 'phone' ],
-	// 			'username' => $contact[ 'username' ],
-	// 			'address' => $contact[ 'address' ],
-	// 			'extension' => $contact[ 'extension' ],
-	// 			'mobile' => $contact[ 'mobile' ],
-	// 			'password' => $contact[ 'password' ],
-	// 			'language' => $contact[ 'language' ],
-	// 			'skype' => $contact[ 'skype' ],
-	// 			'linkedin' => $contact[ 'linkedin' ],
-	// 			'position' => $contact[ 'position' ],
-	// 			'primary' => $contact[ 'primary' ],
-	// 			'admin' => $contact[ 'admin' ],
-	// 			'inactive' => $contact[ 'inactive' ],
-	// 			'privileges' => $data_privileges,
-	// 		);
-	// 	};
-	// 	echo json_encode( $data_contacts );
-	// }
+	function contacts() {
+		$contacts = $this->Contacts_Model->get_all_contacts();
+		$permissions = $this->Privileges_Model->get_all_common_permissions();
+		$privileges = $this->Privileges_Model->get_privileges();
+		$data_contacts = array();
+		foreach ( $contacts as $contact ) {
+			$arr = array();
+			foreach ( $privileges as $privilege ) {
+				if ( $privilege[ 'relation' ] == $contact[ 'id' ] && $privilege[ 'relation_type' ] == 'contact' ) {
+					array_push( $arr, $privilege[ 'permission_id' ] );
+				}
+			}
+			$data_privileges = array();
+			foreach ( $permissions as $permission ) {
+				$data_privileges[] = array(
+					'id' => $permission[ 'id' ],
+					'name' => '' . lang( $permission[ 'permission' ] ) . '',
+					'value' => '' . ( array_search( $permission[ 'id' ], $arr ) !== FALSE ) ? true : false . ''
+				);
+			}
+			$data_contacts[] = array(
+				'id' => $contact[ 'id' ],
+				'customer_id' => $contact[ 'customer_id' ],
+				'name' => '' . $contact[ 'name' ] . '',
+				'surname' => '' . $contact[ 'surname' ] . '',
+				'email' => $contact[ 'email' ],
+				'phone' => $contact[ 'phone' ],
+				'username' => $contact[ 'username' ],
+				'address' => $contact[ 'address' ],
+				'extension' => $contact[ 'extension' ],
+				'mobile' => $contact[ 'mobile' ],
+				'password' => $contact[ 'password' ],
+				'language' => $contact[ 'language' ],
+				'skype' => $contact[ 'skype' ],
+				'linkedin' => $contact[ 'linkedin' ],
+				'position' => $contact[ 'position' ],
+				'primary' => $contact[ 'primary' ],
+				'admin' => $contact[ 'admin' ],
+				'inactive' => $contact[ 'inactive' ],
+				'privileges' => $data_privileges,
+			);
+		};
+		echo json_encode( $data_contacts );
+	}
 
 	function contact($id) {
 		$contacts = $this->Contacts_Model->get_customer_contacts($id);

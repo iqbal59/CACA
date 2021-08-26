@@ -474,7 +474,7 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 		$scope.getStates($scope.lead.country_id);
 		$scope.leadsLoader = false;
 
-		$http.get(BASE_URL + 'api/contact/' + LEADID).then(function (contact) {
+		$http.get(BASE_URL + 'api/contacts/' + LEADID).then(function (contact) {
 			$scope.contacts = contact.data;
 		});
 
