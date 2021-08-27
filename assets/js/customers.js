@@ -488,7 +488,7 @@ function Customer_Controller($scope, $http, $filter, $mdSidenav, $mdDialog) {
 
 	$http.get(BASE_URL + 'customers/get_customer/' + CUSTOMERID).then(function (Customer) {
 		$scope.customer = Customer.data;
-		$http.get(BASE_URL + 'api/contact/' + CUSTOMERID).then(function (contact) {
+		$http.get(BASE_URL + 'api/contacts/' + CUSTOMERID).then(function (contact) {
 			$scope.contacts = contact.data;
 		});
 		$scope.isActive = $scope.customer.customer_isActive;
