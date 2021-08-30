@@ -474,7 +474,7 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 		$scope.getStates($scope.lead.country_id);
 		$scope.leadsLoader = false;
 
-		$http.get(BASE_URL + 'api/contacts/' + LEADID).then(function (contact) {
+		$http.get(BASE_URL + 'api/leadcontacts/' + LEADID).then(function (contact) {
 			$scope.contacts = contact.data;
 		});
 
@@ -633,7 +633,7 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 					password: $scope.passwordNew,
 				});
 			}
-			var posturl = BASE_URL + 'customers/contact/';
+			var posturl = BASE_URL + 'customers/leadcontact/';
 			$http.post(posturl, dataObj, config)
 				.then(
 					function (response) {
@@ -667,7 +667,8 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 					skype: '',
 					linkedin: '',
 					position: '',
-					customer: LEADID,
+					lead: LEADID,
+					customer: 0,
 					isPrimary: $scope.isPrimary,
 					isAdmin: $scope.isAdmin,
 					password: $scope.passwordNew,
@@ -684,7 +685,8 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 					skype: $scope.newcontact.skype,
 					linkedin: $scope.newcontact.linkedin,
 					position: $scope.newcontact.position,
-					customer: LEADID,
+					lead: LEADID,
+					customer: 0,
 					isPrimary: $scope.isPrimary,
 					isAdmin: $scope.isAdmin,
 					password: $scope.passwordNew,
@@ -698,7 +700,7 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 						if (response.data.success == true) {
 							globals.mdToast('success', response.data.message);
 							$mdSidenav('NewContact').close();
-							$http.get(BASE_URL + 'api/contact/' + CUSTOMERID).then(function (contact) {
+							$http.get(BASE_URL + 'api/leadcontacts/' + CUSTOMERID).then(function (contact) {
 								$scope.all_contacts = contact.data;
 								$scope.contacts = $filter('filter')($scope.all_contacts, {
 									customer_id: LEADID,
@@ -713,9 +715,22 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 						$scope.saving = false;
 					}
 				);
+
 		};
 
-
+		$scope.RemoveContact = function (id) {
+			console.log(lang.delete_contact);
+			globals.deleteDialog(lang.attention, lang.delete_contact, id, lang.doIt, lang.cancel, 'customers/remove_contact/' + id, function(response) {
+				if (response.success == true) {
+					globals.mdToast('success', response.message);
+					$http.get(BASE_URL + 'api/leadcontacts/' + CUSTOMERID).then(function (contact) {
+						$scope.contacts = contact.data;
+					});
+				} else {
+					globals.mdToast('error',response.message);
+				}
+			});
+		};
 
 	});
 
