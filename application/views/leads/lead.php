@@ -410,7 +410,147 @@
  </md-tabs>
 </md-sidenav>
 
-
+<div style="visibility: hidden">
+    <div ng-repeat="contact in contacts" class="md-dialog-container" id="ContactModal-{{contact.id}}">
+        <md-dialog aria-label="ContactModal">
+            <form>
+                <md-toolbar class="toolbar-white">
+                    <div class="md-toolbar-tools">
+                        <h2>{{contact.name}} {{contact.surname}}</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="CloseModal()">
+                            <md-icon class="ion-close-round" aria-label="Close dialog" style="color:black">
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content style="max-width:800px;max-height:810px; ">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="<?php echo lang('contact') ?>">
+                            <md-content class="md-padding bg-white">
+                                <md-list flex>
+                                    <md-list-item>
+                                        <md-icon class="mdi mdi-case"></md-icon>
+                                        <p><?php echo lang('contactposition')?></p>
+                                        <p class="md-secondary" ng-bind="contact.position"></p>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon class="mdi mdi-phone"></md-icon>
+                                        <p><?php echo lang('contactphone')?></p>
+                                        <p class="md-secondary" ng-bind="contact.phone + '-' + contact.extension">
+                                        </p>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon class="mdi ion-iphone"></md-icon>
+                                        <p><?php echo lang('contactmobile')?></p>
+                                        <p class="md-secondary" ng-bind="contact.mobile"></p>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon class="mdi mdi-pin"></md-icon>
+                                        <p><?php echo lang('contactaddress')?></p>
+                                        <p class="md-secondary" ng-bind="contact.address"></p>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon class="mdi mdi-skype"></md-icon>
+                                        <p><?php echo lang('contactskype')?></p>
+                                        <p class="md-secondary" ng-bind="contact.skype"></p>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-icon class="mdi mdi-linkedin"></md-icon>
+                                        <p><?php echo lang('contactlinkedin')?></p>
+                                        <p class="md-secondary" ng-bind="contact.linkedin"></p>
+                                    </md-list-item>
+                                </md-list>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="<?php echo lang('update') ?>">
+                            <md-content class="md-padding bg-white">
+                                <div class="col-md-12 nopadding">
+                                    <md-input-container flex-gt-sm class="col-md-4">
+                                        <label><?php echo lang('contactname');?></label>
+                                        <input ng-model="contact.name">
+                                    </md-input-container>
+                                    <md-input-container flex-gt-sm class="col-md-4">
+                                        <label><?php echo lang('contactsurname');?></label>
+                                        <input ng-model="contact.surname">
+                                    </md-input-container>
+                                    <md-input-container flex-gt-sm class="col-md-4">
+                                        <label><?php echo lang('contactposition');?></label>
+                                        <input ng-model="contact.position">
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12 nopadding">
+                                    <md-input-container class="col-md-4">
+                                        <label><?php echo lang('contactphone');?></label>
+                                        <input ng-model="contact.phone">
+                                    </md-input-container>
+                                    <md-input-container class="col-md-4">
+                                        <label><?php echo lang('extension');?></label>
+                                        <input ng-model="contact.extension">
+                                    </md-input-container>
+                                    <md-input-container class="col-md-4">
+                                        <label><?php echo lang('contactmobile');?></label>
+                                        <input ng-model="contact.mobile">
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12 nopadding">
+                                    <md-input-container class="col-md-4">
+                                        <label><?php echo lang('contactemail');?></label>
+                                        <input ng-model="contact.email">
+                                    </md-input-container>
+                                    <md-input-container class="col-md-4">
+                                        <label><?php echo lang('contactskype');?></label>
+                                        <input ng-model="contact.skype">
+                                    </md-input-container>
+                                    <md-input-container class="col-md-4">
+                                        <label><?php echo lang('contactlinkedin');?></label>
+                                        <input ng-model="contact.linkedin">
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-12 nopadding">
+                                    <md-input-container class="col-md-12">
+                                        <label><?php echo lang('contactaddress');?></label>
+                                        <input ng-model="contact.address">
+                                    </md-input-container>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="<?php echo lang('privileges') ?>">
+                            <md-content class="md-padding bg-white">
+                                <div ng-repeat="privilege in contact.privileges">
+                                    <md-switch ng-model="privilege.value"
+                                    ng-change="UpdateContactPrivilege(contact.id,privilege.value,privilege.id)"
+                                    aria-label="Status"><strong class="text-muted">{{privilege.name}}</strong>
+                                </md-switch>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-dialog-content>
+            <md-dialog-actions layout="row">
+                <md-button ng-click='ChangePassword(contact.id, contact.password)' md-autofocus>
+                    <?php echo lang('changepassword')?> 
+                </md-button>
+                <span flex></span>
+                <md-button ng-click='RemoveContact(contact.id)' ng-click="answer('not useful')">
+                    <?php echo lang('delete')?>
+                </md-button>
+                <md-button ng-click="UpdateContact($index)" ng-click="answer('useful')"
+                    style="margin-right:20px;" class="template-button" ng-disabled="updatingContact == true">
+                    <span ng-hide="updatingContact == true"><?php echo lang('update');?></span>
+                    <md-progress-circular class="white" ng-show="updatingContact == true"
+                    md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                </md-button>
+            </md-dialog-actions>
+        </form>
+    </md-dialog>
+</div>
+</div>
 
 
 
@@ -559,7 +699,8 @@
   lang.delete_lead = "<?php echo lang('leadattentiondetail')?>";
   lang.convert_title = "<?php echo lang('convert').' '.lang('lead').' '.lang('to').' '.lang('customer')?>";
   lang.convert_text = "<?php echo lang('convertmsg').' '.lang('lead').' '.lang('to').' '.lang('customer')?>";
-  lang.convert = "<?php echo lang('convert')?>";    
+  lang.convert = "<?php echo lang('convert')?>";   
+  lang.delete_contact="<?php echo lang('contactattentiondetail')?>"; 
 </script>
 <?php include_once(APPPATH . 'views/inc/footer.php');?>
 <script src="<?php echo base_url('assets/js/leads.js'); ?>"></script>

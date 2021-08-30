@@ -1,4 +1,4 @@
-<?php include_once( APPPATH . 'views/inc/ciuis_data_table_header.php' ); ?>
+<?php include_once(APPPATH . 'views/inc/ciuis_data_table_header.php'); ?>
 <?php $appconfig = get_appconfig(); ?>
 <style>
   .topRow {
@@ -67,7 +67,7 @@
                   </md-button>
                 </md-menu-item>
               <?php } ?>
-              <?php echo form_open_multipart('leads/exportdata',array("class"=>"form-horizontal")); ?>
+              <?php echo form_open_multipart('leads/exportdata', array("class"=>"form-horizontal")); ?>
               <md-menu-item>
                 <md-button type="submit" aria-label="Add">
                   <div layout="row" flex>
@@ -146,6 +146,9 @@
                     </h3>
                   </div>
                 </div>
+                <p class="small">
+                  <span>{{ lead.company | limitTo: 30 }}{{lead.company.length > 28 ? '...' : ''}}</span>
+                </p>
                 <p class="small">
                   <span class="blur"><?php echo lang('email') ?>:</span> 
                   <span>{{ lead.email | limitTo: 30 }}{{lead.email.length > 28 ? '...' : ''}}</span>
@@ -274,7 +277,7 @@
                     </md-button>
                   </md-menu-item>
                 <?php } ?>
-                <?php echo form_open_multipart('leads/exportdata',array("class"=>"form-horizontal")); ?>
+                <?php echo form_open_multipart('leads/exportdata', array("class"=>"form-horizontal")); ?>
                 <md-menu-item>
                   <md-button type="submit" aria-label="Add">
                     <div layout="row" flex>
@@ -611,7 +614,7 @@
   MSG_CANCEL = '<?php echo lang('cancel') ?>',
   MSG_OK = '<?php echo lang('yes') ?>'
 </script>
-<?php include_once( APPPATH . 'views/inc/other_footer.php' ); ?>
+<?php include_once(APPPATH . 'views/inc/other_footer.php'); ?>
 <script src="<?php echo base_url('assets/lib/chartjs/dist/Chart.min.js'); ?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/js/ciuis_data_table.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/leads.js'); ?>"></script> 

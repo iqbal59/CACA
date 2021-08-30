@@ -1236,6 +1236,7 @@ class Api extends CIUIS_Controller
             $data_contacts[] = array(
             'id' => $contact[ 'id' ],
             'customer_id' => $contact[ 'customer_id' ],
+            'lead_id' => $contact[ 'lead_id' ],
             'name' => '' . $contact[ 'name' ] . '',
             'surname' => '' . $contact[ 'surname' ] . '',
             'email' => $contact[ 'email' ],

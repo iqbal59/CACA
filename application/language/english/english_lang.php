@@ -456,7 +456,7 @@ $lang[ 'addedanewcontact' ] = 'added a new contact';
 $lang[ 'addedanewproduct' ] = 'added a new product';
 $lang[ 'updatedsettings' ] = 'updated settings';
 
-// SETTINGS LANGUAGE VARIATIONS 
+// SETTINGS LANGUAGE VARIATIONS
 
 $lang[ 'crmsettings' ] = 'CRM Settings';
 $lang[ 'companysettings' ] = 'Company Settings';
@@ -482,7 +482,7 @@ $lang[ 'zipcodesub' ] = 'Your Post Code will appear on your invoices if you fill
 $lang[ 'phone' ] = 'Phone';
 $lang[ 'fax' ] = 'Fax';
 $lang[ 'vatnumber' ] = 'Number';
-$lang[ 'taxoffice' ] = 'Office'; 
+$lang[ 'taxoffice' ] = 'Office';
 $lang[ 'moneyseperator' ] = 'Money Seperator';
 $lang[ 'dot' ] = 'Dot ( . )';
 $lang[ 'comma' ] = 'Comma ( , )';
@@ -506,7 +506,7 @@ $lang[ 'allowedipaddereses' ] = 'Allowed IP Addereses';
 $lang[ 'termtitle' ] = 'Terms & Conditions Title';
 $lang[ 'termdescription' ] = 'Predefined Terms & Conditions';
 
-// TIME AGO LANGUAGE VARIATIONS 
+// TIME AGO LANGUAGE VARIATIONS
 
 $lang[ 'yearsago' ] = ' years ago';
 $lang[ 'yearago' ] = ' year ago';
@@ -1381,9 +1381,9 @@ $lang['upload_success'] = 'Files have been uploaded successfully!';
 
 // VERSION 1.3 LANGUAGE VARIATIONS
  
-$lang['webleads'] = 'Online Leads'; 
+$lang['webleads'] = 'Online Leads';
 $lang['formbuilder'] = 'Form Builder';
-$lang['leadsforms'] = 'Online Lead Forms'; 
+$lang['leadsforms'] = 'Online Lead Forms';
 $lang['newform'] = 'New Form';
 $lang['integrationcode'] = 'Embed';
 $lang['manage_webleads'] = 'Manage Online Leads';
@@ -1527,7 +1527,7 @@ $lang['min'] = '{{field}} cannot be less than {{min}}.';
 $lang['next'] = 'Next';
 $lang['pattern'] = '{{field}} does not match the pattern {{pattern}}';
 $lang['previous'] = 'Previous';
-$lang['translations'] = 'Translations'; 
+$lang['translations'] = 'Translations';
 $lang['last_updated_on'] = 'Last Updated on';
 $lang['availableversion'] = 'Available Version';
 
@@ -1575,7 +1575,7 @@ $lang['total_expenses'] = 'Total Expenses';
 $lang['total_invoices'] = 'Total Invoices';
 $lang['old'] = 'old';
 $lang['password_length_error'] = 'Password must be of minimum 6 characters length';
-$lang['incorrect'] = 'Incorrect'; 
+$lang['incorrect'] = 'Incorrect';
 $lang['email_with_attachment'] = 'Email with attachment';
 $lang['expense_consultant'] = 'Expense Created (Sent to Consultants)';
 $lang['sales_vs_expenses'] = 'Monthly Expenses vs Sales';
@@ -1646,7 +1646,7 @@ $lang['project_prefix'] = 'PROJ';
 $lang['date_error'] = 'can not be greater than';
 $lang['project_description'] = 'Project Description';
 $lang['view_changelog'] = 'View Changelog';
-$lang['favicon'] = 'Favicon'; 
+$lang['favicon'] = 'Favicon';
 $lang['admin_login_image'] = 'Admin Login Screen';
 $lang['client_login_image'] = 'Client Login Screen';
 $lang['admin_login_text'] = 'Admin Login Screen Text';
@@ -1874,7 +1874,7 @@ $lang['purchase_status'] = 'Purchase Status';
 $lang['purchase_link'] = 'Purchase Link';
 $lang['total_amount'] = 'Total Amount';
 $lang['purchase_message'] = 'Send Purchase to Vendor';
-$lang['purchase_recurring'] = 'Recurring Purchase Created (Sent to Vendor)';	
+$lang['purchase_recurring'] = 'Recurring Purchase Created (Sent to Vendor)';
 $lang['generate_pdf_purchase_msg'] = 'For the PDF version of this purchase, please click the Create button,<br>';
 $lang['purchase_payment'] = 'Purchase Payment';
 $lang[ 'series' ] = 'Series';
@@ -1932,7 +1932,7 @@ $lang['grid'] = 'Grid';
 $lang['list'] = 'List';
 $lang['only_admin'] = 'Only admin can';
 
-// 1.92 
+// 1.92
 $lang['plugins'] = 'Plugins';
 $lang['hr'] = 'HR';
 $lang['module'] = 'Module';
@@ -1949,5 +1949,3 @@ $lang['module_install_error'] = 'Error occured while installing module';
 $lang['x_menu_modules'] = 'Module';
 $lang['manage_hrm'] = 'Manage HR Module';
 $lang['x_menu_hrm'] = 'HRM';
-
-?>

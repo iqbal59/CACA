@@ -700,10 +700,10 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 						if (response.data.success == true) {
 							globals.mdToast('success', response.data.message);
 							$mdSidenav('NewContact').close();
-							$http.get(BASE_URL + 'api/leadcontacts/' + CUSTOMERID).then(function (contact) {
+							$http.get(BASE_URL + 'api/leadcontacts/' + LEADID).then(function (contact) {
 								$scope.all_contacts = contact.data;
 								$scope.contacts = $filter('filter')($scope.all_contacts, {
-									customer_id: LEADID,
+									lead_id: LEADID,
 								});
 							});
 						} else {
@@ -719,17 +719,123 @@ function Lead_Controller($scope, $http, $mdSidenav, $mdDialog, $filter) {
 		};
 
 		$scope.RemoveContact = function (id) {
-			console.log(lang.delete_contact);
 			globals.deleteDialog(lang.attention, lang.delete_contact, id, lang.doIt, lang.cancel, 'customers/remove_contact/' + id, function(response) {
 				if (response.success == true) {
 					globals.mdToast('success', response.message);
-					$http.get(BASE_URL + 'api/leadcontacts/' + CUSTOMERID).then(function (contact) {
+					$http.get(BASE_URL + 'api/leadcontacts/' + LEADID).then(function (contact) {
 						$scope.contacts = contact.data;
 					});
 				} else {
 					globals.mdToast('error',response.message);
 				}
 			});
+		};
+
+
+		$scope.isPrimary = true;
+		$scope.isAdmin = false;
+
+		$scope.ContactDetail = function (index) {
+			var contact = $scope.contacts[index];
+			$mdDialog.show({
+				contentElement: '#ContactModal-' + contact.id,
+				parent: angular.element(document.body),
+				targetEvent: index,
+				clickOutsideToClose: true
+			});
+			$scope.UpdateContactPrivilege = function (id, value, privilege_id) {
+				$http.post(BASE_URL + 'customers/update_contact_privilege/' + id + '/' + value + '/' + privilege_id)
+					.then(
+						function (response) {
+							if(response.data.success == false) {
+								globals.mdToast('error', response.data.message);
+							}
+						},
+						function (response) {
+							console.log(response);
+						}
+					);
+			};
+		};
+
+		$scope.updatingContact = false;
+		$scope.UpdateContact = function (index) {
+			$scope.updatingContact = true;
+			var contact = $scope.contacts[index];
+			var contact_id = contact.id;
+			$scope.contact = contact;
+			var dataObj = $.param({
+				name: $scope.contact.name,
+				surname: $scope.contact.surname,
+				phone: $scope.contact.phone,
+				extension: $scope.contact.extension,
+				mobile: $scope.contact.mobile,
+				email: $scope.contact.email,
+				address: $scope.contact.address,
+				skype: $scope.contact.skype,
+				linkedin: $scope.contact.linkedin,
+				position: $scope.contact.position,
+			});
+			var posturl = BASE_URL + 'customers/update_contact/' + contact_id;
+			$http.post(posturl, dataObj, config)
+				.then(
+					function (response) {
+						if (response.data.success == true) {
+							globals.mdToast('success', response.data.message);
+							$mdDialog.cancel();
+							$http.get(BASE_URL + 'api/leadcontacts/' + LEADID).then(function (contact) {
+								$scope.all_contacts = contact.data;
+								$scope.contacts = $filter('filter')($scope.all_contacts, {
+									customer_id: CUSTOMERID,
+								});
+							});
+							$('#updatecontact' + contact_id + '').modal('hide');
+						} else {
+							globals.mdToast('error', response.data.message);
+						}
+						$scope.updatingContact = false;
+					},
+					function (response) {
+						$scope.updatingContact = false;
+					}
+				);
+		};
+
+		$scope.ChangePassword = function (contact) {
+			// Appending dialog to document.body to cover sidenav in docs app
+			var confirm = $mdDialog.prompt()
+				.title('Change Password')
+				.textContent('Are sure change contact password?')
+				.placeholder('Password')
+				.ariaLabel('Password')
+				.initialValue('')
+				.targetEvent(contact)
+				.required(true)
+				.ok('Okay!')
+				.cancel('Cancel');
+
+			$mdDialog.show(confirm).then(function (result) {
+				var dataObj = $.param({
+					password: result,
+				});
+				$http.post(BASE_URL + 'customers/change_password_contact/' + contact, dataObj, config)
+					.then(
+						function (response) {
+							if(response.data.success == true) {
+								globals.mdToast('success', response.data.message);
+							} else {
+								globals.mdToast('error', response.data.message);
+							}
+						},
+						function (response) {
+						}
+					);
+			}, function () {
+
+			});
+		};
+		$scope.CloseModal = function () {
+			$mdDialog.cancel();
 		};
 
 	});
