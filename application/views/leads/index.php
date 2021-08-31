@@ -141,13 +141,13 @@
                   <div flex-gt-xs="80" flex-xs="80">
                     <h3 flex>
                       <a class="link" ng-href="<?php echo base_url('leads/lead/') ?>{{lead.id}}">
-                        {{ lead.name | limitTo: 30 }}{{lead.name.length > 28 ? '...' : ''}}
+                      {{ lead.company | limitTo: 30 }}{{lead.company.length > 28 ? '...' : ''}}
                       </a>
                     </h3>
                   </div>
                 </div>
                 <p class="small">
-                  <span>{{ lead.company | limitTo: 30 }}{{lead.company.length > 28 ? '...' : ''}}</span>
+                  <span>  {{ lead.name | limitTo: 30 }}{{lead.name.length > 28 ? '...' : ''}}</span>
                 </p>
                 <p class="small">
                   <span class="blur"><?php echo lang('email') ?>:</span> 
