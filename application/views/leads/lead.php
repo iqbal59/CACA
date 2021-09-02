@@ -8,7 +8,7 @@
           <md-icon><i class="ico-ciuis-leads text-warning"></i></md-icon>
         </md-button>
         <h2 ng-bind="lead.lead_number"></h2>&nbsp;
-        <h2 flex md-truncate ng-bind="lead.name"></h2>
+        <h2 flex md-truncate ng-bind="lead.company"></h2>
         <?php if (check_privilege('customers', 'create')) { ?> 
           <md-button ng-show="ONLYADMIN == 'true' || lead.assigned_id == user.id" ng-if="!lead.dateconverted" ng-click="Convert()" class="md-icon-button" aria-label="Convert" ng-cloak>
             <md-tooltip md-direction="bottom"><?php echo lang('convert') ?></md-tooltip>
