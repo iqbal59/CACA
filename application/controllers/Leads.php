@@ -919,11 +919,11 @@ class Leads extends CIUIS_Controller {
 							'phone' => $row[ 'phone' ],
 							'assigned_id' => $this->input->post( 'importassigned' ),
 							// 'staff_id' => $this->session->userdata( 'usr_id' ),
-							'source' => $this->input->post( 'importsource' ),
+							//'source' => $this->input->post( 'importsource' ),
 							'dateassigned' => date( 'Y-m-d H:i:s' ),
-							//'status' => $this->input->post( 'importstatus' ),
+							'status' => $this->input->post( 'importstatus' ),
 							'staff_id' => $row['staff'],
-							'status' => $row['status'],
+							'source' => $row['source'],
 						);
 						$this->Leads_Model->insert_csv( $insert_data );
 					}
