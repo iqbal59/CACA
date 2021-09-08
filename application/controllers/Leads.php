@@ -925,8 +925,8 @@ class Leads extends CIUIS_Controller {
 							'staff_id' => $row['staff'],
 							'source' => $row['source'],
 						);
-						if(!$this->Leads_Model->check_duplicate_lead($insert_data['email']))
-						$this->Leads_Model->insert_csv( $insert_data );
+						if(!$this->Leads_Model->check_duplicate_lead($row['email']))
+						{$this->Leads_Model->insert_csv( $insert_data );}
 						else{
 							$duplicate_email."<li>".$row['email']."</li>";
 						}
