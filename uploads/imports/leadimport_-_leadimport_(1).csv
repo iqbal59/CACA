@@ -1,0 +1,13 @@
+type,name,title,company,description,zip,city,state,address,email,website,phone,staff,status
+0,NA,NA,"Army Public School , Fatehgarh",Positive,209601,Farukhabad,Uttar Pradesh,"Sheesham Bagh, Cantt Area, Fatehgarh","aspfategarh@gmail.com
+apsspmarglko@gmail.com",NA,NA,5,1
+0,NA,NA,"Army Public School , Lucknow (SPM)",Positive,226002,Lucknow,Uttar Pradesh,"Under masjid topkhana bazar, Cantonment",NA,NA,NA,5,1
+0,NA,NA,"Army Public School No.1, Jabalpur",Positive,482001,Jabalpur,Madhya Pradesh,Cantt,aps2jabalpur@gmail.com,NA,"761-6959
+761-2678775",5,1
+0,NA,NA,"Army Public School, Gopalpur",Positive,761052,Gopalpur,Odisha,"Gopalpur Cantonment, Ganjam",NA,NA,NA,5,1
+0,NA,NA,"Army Public School, Danapur",Nagetive,801503,Patna,Bihar,"Danapur Naubatpur Rd, Danapur Cantonment",NA,NA,NA,5,1
+0,NA,NA,"Army Public School, Jammu Cantt",Nagetive,180003,Jammu,Jammu and Kashmir,"Chatha, Raipur Satwari",NA,NA,NA,5,1
+0,NA,NA,"Army Public School, Dehradun (CT)",Nagetive,248002,Dehradun,Uttarakhand,"Army cant, Bharuwala Colony, Clement Town",NA,NA,NA,5,1
+0,NA,NA,"Army Public School, Ambala",Nuetral,133004,Ambala,Haryana,"Pioneer Location, Near Kharga Cinema Hall, Nicholson Road",NA,NA,NA,5,1
+0,NA,NA,"Army Public School, Chandimandir",Nuetral,134107,Panchkula,Haryana,"Sector D, Chandimandir Cantonment",NA,NA,NA,5,1
+0,NA,NA,"Army Public School, Patiala",Nuetral,147001,Patiala,Punjab,"Sangrur Road, Tarapore Enclave",NA,NA,NA,5,1
