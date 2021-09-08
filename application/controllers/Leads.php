@@ -927,7 +927,11 @@ class Leads extends CIUIS_Controller {
 						);
 						if(!$this->Leads_Model->check_duplicate_lead($insert_data['email']))
 						$this->Leads_Model->insert_csv( $insert_data );
+						else{
+							$duplicate_email."<li>".$row['email']."</li>";
+						}
 					}
+					$this->session->set_flashdata( 'ntf3', "<ul>".$duplicate_email."</ul>" );
 					$this->session->set_flashdata( 'ntf1', lang('csvimportsuccess') );
 					redirect( 'leads/index' );
 				} else
