@@ -963,12 +963,13 @@ class Leads extends CIUIS_Controller
                             $this->Leads_Model->insert_csv($insert_data);
                             //print_r($this->db->last_query());
                         } else {
-                            $duplicate_email . "<li>" . $row['email'] . "</li>";
+                            $duplicate_email.="<li>" . $row['email'] . "</li>";
                         }
                     }
+                    if($duplicate_email)
                     $this->session->set_flashdata('ntf3', "<ul>" . $duplicate_email . "</ul>");
                     $this->session->set_flashdata('ntf1', lang('csvimportsuccess'));
-                    //redirect( 'leads/index' );
+                    redirect( 'leads/index' );
                 } else {
                     redirect('leads/index');
                 }
