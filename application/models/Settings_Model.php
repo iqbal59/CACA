@@ -70,6 +70,8 @@ class Settings_Model extends CI_Model {
 		$this->db->where('name', 'task_series')->update('appconfig', array('value' => $this->input->post('task_series')));
 		$this->db->where('name', 'deposit_series')->update('appconfig', array('value' => $this->input->post('deposit_series')));
 		$this->db->where('name', 'deposit_prefix')->update('appconfig', array('value' => $this->input->post('deposit_prefix')));
+		$this->db->where('name', 'contact_series')->update('appconfig', array('value' => $this->input->post('contact_series')));
+		$this->db->where('name', 'contact_prefix')->update('appconfig', array('value' => $this->input->post('contact_prefix')));
 	}
 
 	function is_demo() {
@@ -352,7 +354,8 @@ class Settings_Model extends CI_Model {
 		) );
 		$permissions = $this->input->post( 'permissions' );
 		foreach ( $permissions as $permission ) {
-			if ( isset( $permission[ 'role_permission_id' ] ) ) {
+			if ( isset( $permission[ 'role_permission_id' ] ) && !empty( $permission[ 'role_permission_id' ] ) ) {
+				echo $permission[ 'role_permission_id' ]."a";
 				$param = array(
 					'permission_view_own' => $permission['permission_view_own'] == 'true' ? 1 : 0,
 					'permission_view_all' => $permission['permission_view_all'] == 'true' ? 1 : 0,

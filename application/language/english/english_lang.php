@@ -1949,3 +1949,11 @@ $lang['module_install_error'] = 'Error occured while installing module';
 $lang['x_menu_modules'] = 'Module';
 $lang['manage_hrm'] = 'Manage HR Module';
 $lang['x_menu_hrm'] = 'HRM';
+
+//Koncept Software
+$lang['manage_contacts'] = 'Manage Contacts';
+$lang['x_menu_contacts'] = 'Contacts';
+$lang[ 'importcontacts' ] = 'Import Contacts';
+$lang[ 'exportcontacts' ] = 'Export Contacts';
+$lang[ 'mobile' ] = 'Mobile';
+$lang[ 'position' ] = 'Position';

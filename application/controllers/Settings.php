@@ -14,6 +14,7 @@ class Settings extends CIUIS_Controller {
 	}
 
 	function update( $settingname ) {
+		
 		if ( $this->Privileges_Model->check_privilege( 'settings', 'all' ) ) {
 			if ( $this->Privileges_Model->check_privilege( 'settings', 'edit' ) ) {
 				if ( isset( $settingname ) ) {
@@ -1271,6 +1272,8 @@ class Settings extends CIUIS_Controller {
 								'role_type' => $this->input->post('type'),
 								'role_updatedat' => date('Y-m-d_H-i-s'),
 							);
+
+							
 							$this->Settings_Model->update_role($params, $id);
 							$data['message'] = lang('role').' '.lang('updatemessage');
 							$data['success'] = true;

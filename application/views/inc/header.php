@@ -10,6 +10,7 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
 ?>
 <!DOCTYPE html>
 <html ng-app="Ciuis" lang="<?php echo lang('lang_code');?>">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -55,7 +56,7 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
 <body ng-controller="Ciuis_Controller">
     <?php if ($rebrand['disable_preloader'] == '0') { 
         $preloader =  base_url('assets/img/'.$rebrand['preloader']); ?>
-        <div id="ciuisloader" style="background-image: url(<?php echo $preloader ?>);"></div>
+    <div id="ciuisloader" style="background-image: url(<?php echo $preloader ?>);"></div>
     <?php } ?>
     <md-toolbar class="toolbar-ciuis-top">
         <div class="md-toolbar-tools">
@@ -69,18 +70,20 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
             <ul flex class="ciuis-v3-menu hidden-xs">
 
                 <?php foreach ($menus as $menu) { ?>
-                    <?php if ($menu['url'] != '#' || sizeof($menu['sub_menu']) > 0) { ?>
-                        <li><a href="<?php echo $menu['url'] ?>"><?php echo $menu['name'] ?></a>
-                            <?php if (sizeof($menu['sub_menu']) > 0) { ?>
-                                <ul>
-                                    <?php foreach ($menu['sub_menu'] as $submenu) { ?>
-                                        <li><a href="<?php echo $submenu['url'] ?>"> <i class="icon <?php echo $submenu['icon'] ?>"></i> <span class="title"><?php echo $submenu['name'] ?></span> <span class="descr"><?php echo $submenu['description'] ?></span> </a>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            <?php } ?>
+                <?php if ($menu['url'] != '#' || sizeof($menu['sub_menu']) > 0) { ?>
+                <li><a href="<?php echo $menu['url'] ?>"><?php echo $menu['name'] ?></a>
+                    <?php if (sizeof($menu['sub_menu']) > 0) { ?>
+                    <ul>
+                        <?php foreach ($menu['sub_menu'] as $submenu) { ?>
+                        <li><a href="<?php echo $submenu['url'] ?>"> <i class="icon <?php echo $submenu['icon'] ?>"></i>
+                                <span class="title"><?php echo $submenu['name'] ?></span> <span
+                                    class="descr"><?php echo $submenu['description'] ?></span> </a>
                         </li>
+                        <?php } ?>
+                    </ul>
                     <?php } ?>
+                </li>
+                <?php } ?>
                 <?php } ?>
             </ul>
             <!-- NAVBAR MENU -->
@@ -89,17 +92,21 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                 <md-icon><i class="ion-search text-muted"></i></md-icon>
             </md-button>
             <?php if (!$this->session->userdata('other')) { ?>
-                <div class="dropdown-container timer" ng-cloak>
-                    <md-button ng-click="getTimersList()" id="getTimer" class="md-icon-button dropdown-toggle" data-toggle="dropdown" aria-label="search">
-                        <md-tooltip md-direction="left" ng-bind='lang.timer'></md-tooltip>
-                        <md-icon>
-                            <i class="ion-ios-clock text-muted" id="timerStart" ng-hide="settings.timers == true || settings.timers == 'true'"></i>
-                            <i id="timerStarted" ng-show="settings.timers==true || settings.timers=='true'" class="ion-ios-clock text-success"></i>
-                        </md-icon>
-                    </md-button>
-                </div>
+            <div class="dropdown-container timer" ng-cloak>
+                <md-button ng-click="getTimersList()" id="getTimer" class="md-icon-button dropdown-toggle"
+                    data-toggle="dropdown" aria-label="search">
+                    <md-tooltip md-direction="left" ng-bind='lang.timer'></md-tooltip>
+                    <md-icon>
+                        <i class="ion-ios-clock text-muted" id="timerStart"
+                            ng-hide="settings.timers == true || settings.timers == 'true'"></i>
+                        <i id="timerStarted" ng-show="settings.timers==true || settings.timers=='true'"
+                            class="ion-ios-clock text-success"></i>
+                    </md-icon>
+                </md-button>
+            </div>
             <?php } ?>
-            <md-button ng-hide="ONLYADMIN != 'true'" class="md-icon-button" ng-href="{{appurl + 'settings'}}" aria-label="Settings" ng-cloak>
+            <md-button ng-hide="ONLYADMIN != 'true'" class="md-icon-button" ng-href="{{appurl + 'settings'}}"
+                aria-label="Settings" ng-cloak>
                 <md-tooltip md-direction="left" ng-bind='lang.settings'></md-tooltip>
                 <md-icon><i class="ion-gear-a text-muted"></i></md-icon>
             </md-button>
@@ -107,16 +114,22 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                 <md-tooltip md-direction="left" ng-bind='lang.todo'></md-tooltip>
                 <md-icon><i class="ion-clipboard text-muted"></i></md-icon>
             </md-button>
-            <md-button ng-click="Notifications();get_notifications()" class="md-icon-button" aria-label="Notifications" ng-cloak>
+            <md-button ng-click="Notifications();get_notifications()" class="md-icon-button" aria-label="Notifications"
+                ng-cloak>
                 <md-tooltip md-direction="left" ng-bind='lang.notifications'></md-tooltip>
-                <div ng-show="settings.newnotification == true" class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                <div ng-show="settings.newnotification == true" class="notify"> <span class="heartbit"></span> <span
+                        class="point"></span> </div>
                 <md-icon><i class="ion-ios-bell text-muted"></i></md-icon>
             </md-button>
-            <md-button ng-click="Profile();get_meetings();get_appointments();" class="md-icon-button avatar-button-ciuis" aria-label="User Profile" ng-cloak> 
-                <img height="100%" src="<?php echo $user_image ?>" class="md-avatar" style="max-height: 36px;height: 100%;max-width: 40px;" onerror="this.onerror=null; this.src='<?php echo $user_image_alternate ?>'"> 
+            <md-button ng-click="Profile();get_meetings();get_appointments();"
+                class="md-icon-button avatar-button-ciuis" aria-label="User Profile" ng-cloak>
+                <img height="100%" src="<?php echo $user_image ?>" class="md-avatar"
+                    style="max-height: 36px;height: 100%;max-width: 40px;"
+                    onerror="this.onerror=null; this.src='<?php echo $user_image_alternate ?>'">
             </md-button>
-            <div ng-click="Profile();get_meetings();get_appointments();" md-truncate class="user-informations hidden-xs" ng-cloak> <span class="user-name-in"><?php echo $user_data['name'] ?></span><br>
-                <span class="user-email-in"><?php echo $user_data['email'] ?></span> 
+            <div ng-click="Profile();get_meetings();get_appointments();" md-truncate class="user-informations hidden-xs"
+                ng-cloak> <span class="user-name-in"><?php echo $user_data['name'] ?></span><br>
+                <span class="user-email-in"><?php echo $user_data['email'] ?></span>
             </div>
         </div>
     </md-toolbar>
@@ -135,24 +148,26 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                     <div class="mobile-menu-slider" style="left: 0px;">
                         <div class="mobile-menu">
                             <?php foreach ($menus as $menu) { ?>
-                                <span>
+                            <span>
                                 <?php if($menu['url'] != '#') {?>
-                                    <ul>
-                                        <li class="nav-item">
-                                            <div class="mobile-menu-item"><a href="<?php echo $menu['url'] ?>"><?php echo $menu['name'] ?></a>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <ul>
+                                    <li class="nav-item">
+                                        <div class="mobile-menu-item"><a
+                                                href="<?php echo $menu['url'] ?>"><?php echo $menu['name'] ?></a>
+                                        </div>
+                                    </li>
+                                </ul>
                                 <?php }?>
-                                    <ul>
-                                        <?php foreach ($menu['sub_menu'] as $submenu) { ?>
-                                            <li class="nav-item">
-                                                <div class="mobile-menu-item"><a href="<?php echo $submenu['url'] ?>"><?php echo $submenu['name'] ?></a>
-                                                </div>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </span>
+                                <ul>
+                                    <?php foreach ($menu['sub_menu'] as $submenu) { ?>
+                                    <li class="nav-item">
+                                        <div class="mobile-menu-item"><a
+                                                href="<?php echo $submenu['url'] ?>"><?php echo $submenu['name'] ?></a>
+                                        </div>
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+                            </span>
                             <?php } ?>
                         </div>
                         <div class="clear"></div>
@@ -166,15 +181,17 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
             <div class="top-header">
                 <div class="navBurger">
                     <a href="{{appurl + 'panel'}}">
-                        <img class="transform_logo" width="34px" height="34px" src="<?php echo $app_logo ?>" onerror="this.onerror=null; this.src='<?php echo $app_logo_alternate ?>'">
+                        <img class="transform_logo" width="34px" height="34px" src="<?php echo $app_logo ?>"
+                            onerror="this.onerror=null; this.src='<?php echo $app_logo_alternate ?>'">
                     </a>
                 </div>
             </div>
             <ul id="menu-vertical-menu icon" class="nav">
-                <?php foreach ($leftmenus as $leftmenu) { ?> 
-                    <?php if ($leftmenu['show_staff'] == '0') { ?>
-                        <li class="material-icons <?php echo $leftmenu['icon'] ?>"><a href="<?php echo $leftmenu['url'] ?>"><?php echo $leftmenu['title'] ?></a></li>
-                    <?php } ?>
+                <?php foreach ($leftmenus as $leftmenu) { ?>
+                <?php if ($leftmenu['show_staff'] == '0') { ?>
+                <li class="material-icons <?php echo $leftmenu['icon'] ?>"><a
+                        href="<?php echo $leftmenu['url'] ?>"><?php echo $leftmenu['title'] ?></a></li>
+                <?php } ?>
                 <?php } ?>
             </ul>
         </nav>
@@ -182,11 +199,13 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="taskTimer" ng-cloak style="width: 450px;">
         <md-toolbar class="md-theme-light" style="background:#262626">
             <div class="md-toolbar-tools">
-                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i class="ion-android-arrow-forward"></i> </md-button>
+                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i
+                        class="ion-android-arrow-forward"></i> </md-button>
                 <md-truncate flex><?php echo lang('task') . ' ' . lang('timer') ?></md-truncate>
                 <div class="task-timer">
                     <md-button class="task-timer md-icon-button">
-                    <md-progress-circular ng-show="startingTimer == true" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                        <md-progress-circular ng-show="startingTimer == true" md-mode="indeterminate" md-diameter="20">
+                        </md-progress-circular>
                         <md-icon ng-hide="startingTimer ==true">
                             <md-tooltip md-direction="left" ng-bind='lang.start_timer'></md-tooltip>
                             <i class="ion-ios-play" ng-click="startTimer('start')"></i>
@@ -203,8 +222,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                     <li class="" ng-repeat="time in timers">
                         <div layout="row" layout-wrap class="timer-section">
                             <div flex-gt-xs="60" flex-xs="60">
-                                <span ng-show="time.task_id"><?php echo lang('task') ?>: </span> <a ng-show="time.task_id" href="{{appurl + 'tasks/task/' + time.task_id}}" class="assigned"><strong ng-bind="time.task"></strong></a>
-                                <a ng-show="!time.task_id" class="label label-info assign" ng-click="stopTimerWithTask('assign',time.id)"><?php echo lang('assign_task') ?>
+                                <span ng-show="time.task_id"><?php echo lang('task') ?>: </span> <a
+                                    ng-show="time.task_id" href="{{appurl + 'tasks/task/' + time.task_id}}"
+                                    class="assigned"><strong ng-bind="time.task"></strong></a>
+                                <a ng-show="!time.task_id" class="label label-info assign"
+                                    ng-click="stopTimerWithTask('assign',time.id)"><?php echo lang('assign_task') ?>
                                     &nbsp;&nbsp;<i class="ion-compose"></i></a>
                                 <br>
                                 <span class="text-muted"><?php echo lang('started_at') ?>: {{time.started}}</span>
@@ -222,7 +244,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                                 </div>
                                 <div class="text-right" flex-gt-xs="10" flex-xs="10">
                                     <div>
-                                        <md-button class="md-icon-button timer-menu" ng-click="DeleteMenuTimer(time.id)" aria-label="Delete">
+                                        <md-button class="md-icon-button timer-menu" ng-click="DeleteMenuTimer(time.id)"
+                                            aria-label="Delete">
                                             <md-icon><i class="ion-trash-b text-muted"></i></md-icon>
                                         </md-button>
                                     </div>
@@ -235,11 +258,14 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
             </md-content>
         </md-content>
     </md-sidenav>
-    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="PickUpTo" ng-cloak style="width: 450px;"></md-sidenav>
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="SetOnsiteVisit" ng-cloak style="width: 450px;">
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="PickUpTo" ng-cloak style="width: 450px;">
+    </md-sidenav>
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="SetOnsiteVisit" ng-cloak
+        style="width: 450px;">
         <md-toolbar class="md-theme-light" style="background:#262626">
             <div class="md-toolbar-tools">
-                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i class="ion-android-arrow-forward"></i></md-button>
+                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i
+                        class="ion-android-arrow-forward"></i></md-button>
                 <md-truncate ng-bind='lang.set_onsite_visit'></md-truncate>
             </div>
         </md-toolbar>
@@ -251,34 +277,45 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-xs>
                     <label ng-bind='lang.customer'></label>
-                    <md-select required placeholder="{{lang.choisecustomer}}" ng-model="onsite_visit.customer_id" style="min-width: 200px;" aria-label='Customer'>
+                    <md-select required placeholder="{{lang.choisecustomer}}" ng-model="onsite_visit.customer_id"
+                        style="min-width: 200px;" aria-label='Customer'>
                         <md-option ng-repeat="customer in all_customers" ng-value="customer.id">{{customer.name}}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label ng-bind='lang.assigned'></label>
-                    <md-select placeholder="{{lang.choosestaff}}" ng-model="onsite_visit.staff_id" style="min-width: 200px;" aria-label='Staff'>
+                    <md-select placeholder="{{lang.choosestaff}}" ng-model="onsite_visit.staff_id"
+                        style="min-width: 200px;" aria-label='Staff'>
                         <md-option ng-value="staff.id" ng-repeat="staff in staff">{{staff.name}}</md-option>
                     </md-select>
                 </md-input-container>
                 <br>
                 <md-input-container class="md-block">
                     <label ng-bind='lang.start'></label>
-                    <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime" placeholder="{{lang.chooseadate}}" show-todays-date="" minutes="true" min-date="date" show-icon="true" ng-model="onsite_visit.start" class=" dtp-no-msclear dtp-input md-input">
+                    <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime"
+                        placeholder="{{lang.chooseadate}}" show-todays-date="" minutes="true" min-date="date"
+                        show-icon="true" ng-model="onsite_visit.start" class=" dtp-no-msclear dtp-input md-input">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label ng-bind='lang.end'></label>
-                    <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime" placeholder="{{lang.chooseadate}}" show-todays-date="" minutes="true" min-date="onsite_visit.start" show-icon="true" ng-model="onsite_visit.end" class=" dtp-no-msclear dtp-input md-input">
+                    <input mdc-datetime-picker="" date="true" time="true" type="text" id="datetime"
+                        placeholder="{{lang.chooseadate}}" show-todays-date="" minutes="true"
+                        min-date="onsite_visit.start" show-icon="true" ng-model="onsite_visit.end"
+                        class=" dtp-no-msclear dtp-input md-input">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label ng-bind='lang.description'></label>
-                    <textarea required ng-model="onsite_visit.description" placeholder="<?php echo lang('typeSomething'); ?>" class="form-control note-description"></textarea>
+                    <textarea required ng-model="onsite_visit.description"
+                        placeholder="<?php echo lang('typeSomething'); ?>"
+                        class="form-control note-description"></textarea>
                 </md-input-container>
                 <div class="pull-right">
-                    <md-button ng-click="AddOnsiteVisit()" class="md-raised md-primary md-button md-ink-ripple" ng-disabled="addingOnsite == true" aria-label='Add Onsite Visit'>
+                    <md-button ng-click="AddOnsiteVisit()" class="md-raised md-primary md-button md-ink-ripple"
+                        ng-disabled="addingOnsite == true" aria-label='Add Onsite Visit'>
                         <span ng-hide="addingOnsite == true"><?php echo lang('set'); ?></span>
-                        <md-progress-circular class="white" ng-show="addingOnsite == true" md-mode="indeterminate" md-diameter="20">
+                        <md-progress-circular class="white" ng-show="addingOnsite == true" md-mode="indeterminate"
+                            md-diameter="20">
                         </md-progress-circular>
                     </md-button>
                 </div>
@@ -286,29 +323,34 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
         </md-content>
     </md-sidenav>
 
-    <md-sidenav class="md-sidenav-right md-whiteframe-5dp" md-component-id="searchNav" ng-cloak style="width: 450px;" md-disable-close-events style="width: 650px;" ng-cloak>
+    <md-sidenav class="md-sidenav-right md-whiteframe-5dp" md-component-id="searchNav" ng-cloak style="width: 450px;"
+        md-disable-close-events style="width: 650px;" ng-cloak>
         <md-toolbar class="md-theme-light" style="background:#262626">
             <div class="md-toolbar-tools">
-                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i class="ion-android-arrow-forward"></i></md-button>
+                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i
+                        class="ion-android-arrow-forward"></i></md-button>
                 <md-truncate ng-bind='lang.search'></md-truncate>
             </div>
         </md-toolbar>
         <md-content><br>
             <md-input-container ng-submit="searchInput(search_input)" class="md-block" style="margin-bottom: unset;">
                 <label><?php echo lang('searchhere'); ?></label>
-                <input ng-submit="searchInput(search_input)" name="search" ng-model="search_input" ng-keyup="searchInput(search_input)">
+                <input ng-submit="searchInput(search_input)" name="search" ng-model="search_input"
+                    ng-keyup="searchInput(search_input)">
             </md-input-container>
             <p class="text-center text-muted" ng-show="searchResult == 1"><?php echo lang('not_found'); ?></p>
             <p class="text-center text-muted" ng-show="searchInputMsg == 1"><?php echo lang('type_something'); ?></p>
             <div ng-show="searchLoader == 1">
-                <md-progress-circular md-mode="indeterminate" md-diameter="20" style="margin-left: auto;margin-right: auto;">
+                <md-progress-circular md-mode="indeterminate" md-diameter="20"
+                    style="margin-left: auto;margin-right: auto;">
                 </md-progress-circular>
                 <p class="text-center">
                     <strong><?php echo lang('searching'); ?></strong>
                 </p>
             </div>
             <section ng-show="searchStaff.length > 0">
-                <md-subheader class="md-accent"><span class="material-icons ico-ciuis-staff search-icon pull-right"></span>
+                <md-subheader class="md-accent"><span
+                        class="material-icons ico-ciuis-staff search-icon pull-right"></span>
                     <?php echo lang('staff_members'); ?>
                 </md-subheader>
                 <md-list layout-padding>
@@ -316,7 +358,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'staff/staffmember/' + staff.staff_id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='staff.staff_number?("<?php echo '{{staff.staff_number}}' ?>") : ("<?php echo $appconfig['staff_prefix'] . '' . '{{staff.staff_id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='staff.staff_number?("<?php echo '{{staff.staff_number}}' ?>") : ("<?php echo $appconfig['staff_prefix'] . '' . '{{staff.staff_id}}' ?>")'>
                                     </span>
                                     <span ng-bind='staff.name?("<?php echo '{{staff.name | limitTo :20}}'  ?>") : ("")'>
                                     </span>
@@ -342,9 +385,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'projects/project/' + project.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='project.project_number?("<?php echo '{{project.project_number}}' ?>") : ("<?php echo $appconfig['project_prefix'] . '' . '{{project.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='project.project_number?("<?php echo '{{project.project_number}}' ?>") : ("<?php echo $appconfig['project_prefix'] . '' . '{{project.id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='project.name?("<?php echo '{{project.name | limitTo :20}}'  ?>") : ("")'>
+                                    <span
+                                        ng-bind='project.name?("<?php echo '{{project.name | limitTo :20}}'  ?>") : ("")'>
                                     </span>
 
                                 </p>
@@ -373,7 +418,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                     <md-list-item class="md-3-line search-item" ng-repeat="invoice in searchInvoices">
                         <a href="{{appurl + 'invoices/invoice/' + invoice.invoice_id}}">
                             <div class="md-list-item-text">
-                                <h4 class="blur5" ng-bind='invoice.invoice_number?(invoice.invoice_number):("<?php echo $appconfig['inv_prefix'] . '' . '{{invoice.invoice_id}}' ?>")'>
+                                <h4 class="blur5"
+                                    ng-bind='invoice.invoice_number?(invoice.invoice_number):("<?php echo $appconfig['inv_prefix'] . '' . '{{invoice.invoice_id}}' ?>")'>
                                 </h4>
                                 <p>
                                     <strong><?php echo lang('customer'); ?>:</strong>
@@ -395,9 +441,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'proposals/proposal/' + proposal.proposal_id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='proposal.proposal_number?("<?php echo '{{proposal.proposal_number}}' ?>") : ("<?php echo $appconfig['proposal_prefix'] . '' . '{{proposal.proposal_id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='proposal.proposal_number?("<?php echo '{{proposal.proposal_number}}' ?>") : ("<?php echo $appconfig['proposal_prefix'] . '' . '{{proposal.proposal_id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='proposal.subject?("<?php echo '{{proposal.subject | limitTo :20}}'  ?>") : ("<?php echo '{{ proposal.subject | limitTo: 20 }}' ?>")'>
+                                    <span
+                                        ng-bind='proposal.subject?("<?php echo '{{proposal.subject | limitTo :20}}'  ?>") : ("<?php echo '{{ proposal.subject | limitTo: 20 }}' ?>")'>
                                     </span>
 
                                 </p>
@@ -421,9 +469,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'customers/customer/' + customer.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='customer.customer_number?("<?php echo '{{customer.customer_number}}' ?>") : ("<?php echo $appconfig['customer_prefix'] . '' . '{{customer.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='customer.customer_number?("<?php echo '{{customer.customer_number}}' ?>") : ("<?php echo $appconfig['customer_prefix'] . '' . '{{customer.id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='customer.name?("<?php echo '{{customer.name | limitTo :20}}'  ?>") : ("<?php echo '{{ customer.company | limitTo: 20 }}' ?>")'>
+                                    <span
+                                        ng-bind='customer.name?("<?php echo '{{customer.name | limitTo :20}}'  ?>") : ("<?php echo '{{ customer.company | limitTo: 20 }}' ?>")'>
                                     </span>
 
                                 </p>
@@ -447,11 +497,12 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'leads/lead/' + lead.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='lead.lead_number?("<?php echo '{{lead.lead_number}}' ?>") : ("<?php echo $appconfig['lead_prefix'] . '' . '{{lead.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='lead.lead_number?("<?php echo '{{lead.lead_number}}' ?>") : ("<?php echo $appconfig['lead_prefix'] . '' . '{{lead.id}}' ?>")'>
                                     </span>
                                     <span ng-bind='lead.name?("<?php echo '{{lead.name | limitTo :20}}'  ?>") : ("")'>
                                     </span>
-                                </p> 
+                                </p>
                                 <p>
                                     <strong><?php echo lang('customer'); ?>:</strong>
                                     <span>{{ lead.company | limitTo: 30 }}{{lead.company.length > 30 ? '...' : ''}}</span>
@@ -471,7 +522,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                     <md-list-item class="md-3-line search-item" ng-repeat="expense in searchExpenses">
                         <a href="{{appurl + 'expenses/receipt/' + expense.id}}">
                             <div class="md-list-item-text">
-                                <h4 class="blur5" ng-bind='expense.expense_number?(expense.expense_number):("<?php echo $appconfig['expense_prefix'] . '' . '{{expense.id}}' ?>")'>
+                                <h4 class="blur5"
+                                    ng-bind='expense.expense_number?(expense.expense_number):("<?php echo $appconfig['expense_prefix'] . '' . '{{expense.id}}' ?>")'>
                                 </h4>
                                 <p>
                                     <strong><?php echo lang('title'); ?>:</strong>
@@ -484,16 +536,19 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                 </md-list>
             </section>
             <section ng-show="searchProducts.length > 0">
-                <md-subheader class="md-accent"><span class="material-icons ico-ciuis-products search-icon pull-right"></span>
+                <md-subheader class="md-accent"><span
+                        class="material-icons ico-ciuis-products search-icon pull-right"></span>
                     <?php echo lang('products'); ?></md-subheader>
                 <md-list layout-padding>
                     <md-list-item class="md-3-line search-item" ng-repeat="product in searchProducts">
                         <a href="{{appurl + 'products/product/' + product.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='product.product_number?("<?php echo '{{product.product_number}}' ?>") : ("<?php echo $appconfig['product_prefix'] . '' . '{{product.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='product.product_number?("<?php echo '{{product.product_number}}' ?>") : ("<?php echo $appconfig['product_prefix'] . '' . '{{product.id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='product.name?("<?php echo '{{product.name | limitTo :20}}'  ?>") : ("")'>
+                                    <span
+                                        ng-bind='product.name?("<?php echo '{{product.name | limitTo :20}}'  ?>") : ("")'>
                                     </span>
                                 </p>
                                 <p>
@@ -516,9 +571,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'tickets/ticket/' + ticket.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='ticket.ticket_number?("<?php echo '{{ticket.ticket_number}}' ?>") : ("<?php echo $appconfig['ticket_prefix'] . '' . '{{ticket.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='ticket.ticket_number?("<?php echo '{{ticket.ticket_number}}' ?>") : ("<?php echo $appconfig['ticket_prefix'] . '' . '{{ticket.id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='ticket.subject?("<?php echo '{{ticket.subject | limitTo :20}}'  ?>") : ("")'>
+                                    <span
+                                        ng-bind='ticket.subject?("<?php echo '{{ticket.subject | limitTo :20}}'  ?>") : ("")'>
                                     </span>
                                 </p>
                                 <p>
@@ -541,7 +598,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'tasks/task/' + task.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='task.task_number?("<?php echo '{{task.task_number}}' ?>") : ("<?php echo $appconfig['task_prefix'] . '' . '{{task.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='task.task_number?("<?php echo '{{task.task_number}}' ?>") : ("<?php echo $appconfig['task_prefix'] . '' . '{{task.id}}' ?>")'>
                                     </span>
                                     <span ng-bind='task.name?("<?php echo '{{task.name | limitTo :20}}'  ?>") : ("")'>
                                     </span>
@@ -566,9 +624,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'orders/order/' + order.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='order.order_number?("<?php echo '{{order.order_number}}' ?>") : ("<?php echo $appconfig['order_prefix'] . '' . '{{order.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='order.order_number?("<?php echo '{{order.order_number}}' ?>") : ("<?php echo $appconfig['order_prefix'] . '' . '{{order.id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='order.subject?("<?php echo '{{order.subject | limitTo :20}}'  ?>") : ("")'>
+                                    <span
+                                        ng-bind='order.subject?("<?php echo '{{order.subject | limitTo :20}}'  ?>") : ("")'>
                                     </span>
                                 </p>
                                 <p>
@@ -591,9 +651,11 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                         <a href="{{appurl + 'vendors/vendor/' + vendor.id}}">
                             <div class="md-list-item-text">
                                 <p>
-                                    <span class="blur5" ng-bind='vendor.vendor_number?("<?php echo '{{vendor.vendor_number}}' ?>") : ("<?php echo $appconfig['vendor_prefix'] . '' . '{{vendor.id}}' ?>")'>
+                                    <span class="blur5"
+                                        ng-bind='vendor.vendor_number?("<?php echo '{{vendor.vendor_number}}' ?>") : ("<?php echo $appconfig['vendor_prefix'] . '' . '{{vendor.id}}' ?>")'>
                                     </span>
-                                    <span ng-bind='vendor.company?("<?php echo '{{vendor.company | limitTo :20}}'  ?>") : ("")'>
+                                    <span
+                                        ng-bind='vendor.company?("<?php echo '{{vendor.company | limitTo :20}}'  ?>") : ("")'>
                                     </span>
                                 </p>
                                 <p>
@@ -615,7 +677,9 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                     <md-list-item class="md-3-line search-item" ng-repeat="purchase in searchPurchases">
                         <a href="{{appurl + 'purchases/purchase/' + purchase.purchase_id}}">
                             <div class="md-list-item-text">
-                                <h4 class="blur5" ng-bind='purchase.purchase_number?(purchase.purchase_number):("<?php echo $appconfig['purchase_prefix'] . '' . '{{purchase.purchase_id}}' ?>")'></h4>
+                                <h4 class="blur5"
+                                    ng-bind='purchase.purchase_number?(purchase.purchase_number):("<?php echo $appconfig['purchase_prefix'] . '' . '{{purchase.purchase_id}}' ?>")'>
+                                </h4>
                                 <p>
                                     <strong><?php echo lang('vendor'); ?>:</strong>
                                     <span>{{ purchase.company | limitTo: 30 }}{{purchase.company.length > 30 ? '...' : ''}}</span>
@@ -635,7 +699,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                     <md-list-item class="md-3-line search-item" ng-repeat="deposit in searchDeposits">
                         <a href="{{appurl + 'deposits/deposit/' + deposit.id}}">
                             <div class="md-list-item-text">
-                                <h4 class="blur5" ng-bind='deposit.deposit_number?(deposit.deposit_number):("<?php echo $appconfig['deposit_prefix'] . '' . '{{deposit.id}}' ?>")'>
+                                <h4 class="blur5"
+                                    ng-bind='deposit.deposit_number?(deposit.deposit_number):("<?php echo $appconfig['deposit_prefix'] . '' . '{{deposit.id}}' ?>")'>
                                 </h4>
                                 <p>
                                     <strong><?php echo lang('title'); ?>:</strong>
@@ -654,16 +719,20 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
         <md-content layout-padding="">
             <div ng-show="loadingtodo">
                 <br>
-                <md-progress-circular md-mode="indeterminate" md-diameter="20" style="margin-left: auto;margin-right: auto;">
+                <md-progress-circular md-mode="indeterminate" md-diameter="20"
+                    style="margin-left: auto;margin-right: auto;">
                 </md-progress-circular>
             </div>
             <md-content ng-show="!loadingtodo" layout-padding="">
                 <md-input-container class="md-icon-float md-icon-right md-block">
-                    <textarea ng-model="tododetail" placeholder="<?php echo lang('type_todo') ?>" class="tododetail"></textarea>
+                    <textarea ng-model="tododetail" placeholder="<?php echo lang('type_todo') ?>"
+                        class="tododetail"></textarea>
                     <md-icon class="" aria-label='Add Todo'>
                         <md-tooltip md-direction="bottom"><?php echo lang('add') ?></md-tooltip>
-                        <md-progress-circular ng-show="addingTodo == true" md-mode="indeterminate" md-diameter="18"></md-progress-circular>
-                        <i ng-hide="addingTodo == true" ng-click="AddTodo()" class="ion-android-send text-success cursor"></i>
+                        <md-progress-circular ng-show="addingTodo == true" md-mode="indeterminate" md-diameter="18">
+                        </md-progress-circular>
+                        <i ng-hide="addingTodo == true" ng-click="AddTodo()"
+                            class="ion-android-send text-success cursor"></i>
                     </md-icon>
                 </md-input-container>
                 <h4 md-truncate class=" text-muted text-uppercase"><strong ng-bind='lang.new'></strong></h4>
@@ -673,15 +742,18 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                             <div class="todo-c" style="display: grid;margin-top: 10px;">
                                 <div class="todo-item-header">
                                     <div class="btn-group-sm btn-space pull-right">
-                                        <button data-id='{{todo.id}}' ng-click='TodoAsDone($index)' class="btn btn-default btn-sm ion-checkmark">
+                                        <button data-id='{{todo.id}}' ng-click='TodoAsDone($index)'
+                                            class="btn btn-default btn-sm ion-checkmark">
                                             <md-tooltip md-direction="top"><?php echo lang('mark_as_done') ?>
                                             </md-tooltip>
                                         </button>
-                                        <button data-id='{{todo.id}}' ng-click='DeleteTodo($index)' class="btn btn-default btn-sm ion-trash-a">
+                                        <button data-id='{{todo.id}}' ng-click='DeleteTodo($index)'
+                                            class="btn btn-default btn-sm ion-trash-a">
                                             <md-tooltip md-direction="top"><?php echo lang('delete') ?></md-tooltip>
                                         </button>
                                     </div>
-                                    <span style="padding:5px;" class="pull-left label label-default" ng-bind="todo.date | date : 'MMM d, y h:mm:ss a'"></span>
+                                    <span style="padding:5px;" class="pull-left label label-default"
+                                        ng-bind="todo.date | date : 'MMM d, y h:mm:ss a'"></span>
                                 </div>
                                 <br>
                                 <p class="todo-desc" ng-bind="todo.description"></p>
@@ -692,19 +764,23 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                 <h4 md-truncate class=" text-success"><strong ng-bind='lang.donetodo'></strong></h4>
                 <md-content layout-padding="">
                     <ul class="todo-item-done">
-                        <li ng-class="{ 'donetodo-x' : todo.done }" ng-repeat="done in tododone" class="todo-alt-item-done todo">
+                        <li ng-class="{ 'donetodo-x' : todo.done }" ng-repeat="done in tododone"
+                            class="todo-alt-item-done todo">
                             <div class="todo-c" style="display: grid;margin-top: 10px;">
                                 <div class="todo-item-header">
                                     <div class="btn-group-sm btn-space pull-right">
-                                        <button data-id='{{todo.id}}' ng-click='TodoAsUnDone($index)' class="btn btn-default btn-sm ion-refresh">
+                                        <button data-id='{{todo.id}}' ng-click='TodoAsUnDone($index)'
+                                            class="btn btn-default btn-sm ion-refresh">
                                             <md-tooltip md-direction="top"><?php echo lang('mark_as_undone') ?>
                                             </md-tooltip>
                                         </button>
-                                        <button data-id='{{todo.id}}' ng-click='DeleteTodoDone($index)' class="btn btn-default btn-sm ion-trash-a">
+                                        <button data-id='{{todo.id}}' ng-click='DeleteTodoDone($index)'
+                                            class="btn btn-default btn-sm ion-trash-a">
                                             <md-tooltip md-direction="top"><?php echo lang('delete') ?></md-tooltip>
                                         </button>
                                     </div>
-                                    <span style="padding:5px;" class="pull-left label label-success" ng-bind="done.date | date : 'MMM d, y h:mm:ss a'"></span>
+                                    <span style="padding:5px;" class="pull-left label label-success"
+                                        ng-bind="done.date | date : 'MMM d, y h:mm:ss a'"></span>
                                 </div>
                                 <br>
                                 <p class="todo-desc" ng-bind="done.description"></p>
@@ -715,34 +791,42 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
             </md-content>
         </md-content>
     </md-sidenav>
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="Notifications" ng-cloak style="width: 450px;">
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="Notifications" ng-cloak
+        style="width: 450px;">
         <md-toolbar class="md-theme-light" style="background:#262626">
             <div class="md-toolbar-tools">
-                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i class="ion-android-arrow-forward"></i> </md-button>
+                <md-button ng-click="close()" class="md-icon-button" aria-label="Close"> <i
+                        class="ion-android-arrow-forward"></i> </md-button>
                 <md-truncate><?php echo lang('notifications') ?></md-truncate>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a ng-click="markAllAsRead()" class="cursor" style="font-size: 14px;"><?php echo lang('mark_all_as_read') ?></a>
+                <a ng-click="markAllAsRead()" class="cursor"
+                    style="font-size: 14px;"><?php echo lang('mark_all_as_read') ?></a>
             </div>
         </md-toolbar>
         <div ng-show="loadingnotification">
             <br>
-            <md-progress-circular md-mode="indeterminate" md-diameter="20" style="margin-left: auto;margin-right: auto;">
+            <md-progress-circular md-mode="indeterminate" md-diameter="20"
+                style="margin-left: auto;margin-right: auto;">
             </md-progress-circular>
         </div>
         <md-content ng-show="!loadingnotification">
             <md-list flex>
                 <?php if ($this->session->userdata('admin')) {
                     if (is_update_available() == true) { ?>
-                        <md-list-item class="md-3-line new_notification" ng-href="{{appurl + 'settings'}}" aria-label="Read">
-                            <img ng-src="{{appurl + 'assets/img/update.png'}}" class="update-ntf img" alt="NTF" on-error-src="<?php echo base_url('assets/img/placeholder.png') ?>" />
-                            <div class="md-list-item-text" layout="column">
-                                <h4><?php echo lang('update_available') ?></h4>
-                                <p><?php echo lang('update_available_msg') ?></p>
-                            </div>
-                        </md-list-item>
-                    <?php }
+                <md-list-item class="md-3-line new_notification" ng-href="{{appurl + 'settings'}}" aria-label="Read">
+                    <img ng-src="{{appurl + 'assets/img/update.png'}}" class="update-ntf img" alt="NTF"
+                        on-error-src="<?php echo base_url('assets/img/placeholder.png') ?>" />
+                    <div class="md-list-item-text" layout="column">
+                        <h4><?php echo lang('update_available') ?></h4>
+                        <p><?php echo lang('update_available_msg') ?></p>
+                    </div>
+                </md-list-item>
+                <?php }
                 } ?>
-                <md-list-item class="md-3-line" ng-repeat="ntf in notifications" ng-click="NotificationRead($index)" ng-class="{new_notification: ntf.read == true}" aria-label="Read"> <img ng-src="{{appurl + 'uploads/images/' + ntf.avatar}}" class="md-avatar" alt="NTF" on-error-src="<?php echo base_url('assets/img/placeholder.png') ?>" />
+                <md-list-item class="md-3-line" ng-repeat="ntf in notifications" ng-click="NotificationRead($index)"
+                    ng-class="{new_notification: ntf.read == true}" aria-label="Read"> <img
+                        ng-src="{{appurl + 'uploads/images/' + ntf.avatar}}" class="md-avatar" alt="NTF"
+                        on-error-src="<?php echo base_url('assets/img/placeholder.png') ?>" />
                     <div class="md-list-item-text" layout="column">
                         <h4 ng-bind="ntf.detail"></h4>
                         <p ng-bind="ntf.date"></p>
@@ -756,24 +840,34 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
         <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
                 <md-tab label="Profile">
-                    <md-content layout-padding class="md-mt-10 text-center" style="line-height: 0px;height:200px"> <img style="border-radius: 50%; box-shadow: 0 0 20px 0px #00000014;" height="100px" width="auto" ng-src="{{appurl + 'uploads/images/' + user.avatar}}" class="md-avatar" alt="{{user.name}}" />
+                    <md-content layout-padding class="md-mt-10 text-center" style="line-height: 0px;height:200px"> <img
+                            style="border-radius: 50%; box-shadow: 0 0 20px 0px #00000014;" height="100px" width="auto"
+                            ng-src="{{appurl + 'uploads/images/' + user.avatar}}" class="md-avatar"
+                            alt="{{user.name}}" />
                         <h3><strong ng-bind="user.name"></strong></h3>
                         <br>
                         <span ng-bind="user.email"></span>
                     </md-content>
                     <md-content class="md-mt-30 text-center">
-                        <md-button ng-show="ONLYADMIN != 'true'" ng-href="{{appurl + 'staff/profile'}}" class="md-raised" ng-bind='lang.profile' aria-label='Profile'></md-button>
-                        <md-button ng-show="ONLYADMIN == 'true'" ng-href="{{appurl + 'staff/staffmember/' + activestaff}}" class="md-raised" ng-bind='lang.profile' aria-label='Profile'></md-button>
-                        <md-button ng-href="{{appurl + 'login/logout'}}" class="md-raised" ng-bind='lang.logout' aria-label='LogOut'></md-button>
+                        <md-button ng-show="ONLYADMIN != 'true'" ng-href="{{appurl + 'staff/profile'}}"
+                            class="md-raised" ng-bind='lang.profile' aria-label='Profile'></md-button>
+                        <md-button ng-show="ONLYADMIN == 'true'"
+                            ng-href="{{appurl + 'staff/staffmember/' + activestaff}}" class="md-raised"
+                            ng-bind='lang.profile' aria-label='Profile'></md-button>
+                        <md-button ng-href="{{appurl + 'login/logout'}}" class="md-raised" ng-bind='lang.logout'
+                            aria-label='LogOut'></md-button>
                     </md-content>
                     <?php if (!$this->session->userdata('other')) { ?>
-                        <md-content layout-padding>
-                            <md-switch ng-model="appointment_availability" ng-change="ChangeAppointmentAvailability(user.id,appointment_availability)" aria-label="Status"><strong class="text-muted" ng-bind='lang.appointment_availability'></strong></md-switch>
-                        </md-content>
+                    <md-content layout-padding>
+                        <md-switch ng-model="appointment_availability"
+                            ng-change="ChangeAppointmentAvailability(user.id,appointment_availability)"
+                            aria-label="Status"><strong class="text-muted"
+                                ng-bind='lang.appointment_availability'></strong></md-switch>
+                    </md-content>
                     <?php } ?>
                     <md-tabs>
-                    <?php if (!$this->session->userdata('other')) { ?>
-                        <md-tab label="<?php echo lang('onsite_visits') ?> " >
+                        <?php if (!$this->session->userdata('other')) { ?>
+                        <md-tab label="<?php echo lang('onsite_visits') ?> ">
                             <md-list class="md-dense" flex>
                                 <md-list-item class="md-3-line" ng-repeat="meet in meetings">
                                     <div class="md-list-item-text" layout="column">
@@ -789,8 +883,8 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                                 <p ng-show="!meetings.length" class="not-found"><?php echo lang('not_found') ?></p>
                             </md-list>
                         </md-tab>
-                    <?php } ?>
-                    <?php if (!$this->session->userdata('other')) { ?>
+                        <?php } ?>
+                        <?php if (!$this->session->userdata('other')) { ?>
                         <md-tab label="<?php echo lang('appointments'); ?>">
                             <md-content>
                                 <md-list class="md-dense" flex>
@@ -800,16 +894,18 @@ $user_image_alternate = base_url('uploads/images/n-img.jpg');
                                         </div>
                                         <div class="md-list-item-text" layout="column">
                                             <h3 ng-bind="appointment.title"></h3>
-                                            <p><span ng-bind="appointment.start_iso_date | date : 'MMM d, y h:mm:ss a'"></span><br>
+                                            <p><span
+                                                    ng-bind="appointment.start_iso_date | date : 'MMM d, y h:mm:ss a'"></span><br>
                                                 <span ng-bind="appointment.staff"></span>
                                             </p>
                                         </div>
                                     </md-list-item>
-                                    <p ng-show="!dashboard_appointments.length" class="not-found"><?php echo lang('not_found') ?></p>
+                                    <p ng-show="!dashboard_appointments.length" class="not-found">
+                                        <?php echo lang('not_found') ?></p>
                                 </md-list>
                             </md-content>
                         </md-tab>
-                    <?php } ?>
+                        <?php } ?>
                     </md-tabs>
                 </md-tab>
             </md-tabs>
