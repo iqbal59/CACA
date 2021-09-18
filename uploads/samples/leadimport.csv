@@ -1,2 +1,2 @@
-type,name,title,company,description,zip,city ,state,address,email,website,phone
-0,Sample Name,Sample Title,Sample Company,Sample Description,Sample Zip,Sample City,Sample State,Sample Address,example@email.com,www.example.com,1-211-481-9712
+type,name,title,company,description,zip,city,state,address,email,website,phone,source,staff_id,strength,board_type,session_from
+0,Sample Name,Sample Title,Sample Company,Sample Description,Sample Zip,Sample City,Sample State,Sample Address,example@email.com,www.example.com,1-211-481-9712,1,3,300,CBSE,Apr

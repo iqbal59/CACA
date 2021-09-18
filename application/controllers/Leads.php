@@ -989,18 +989,21 @@ class Leads extends CIUIS_Controller
         $this->load->helper('download');
 
         if ($this->Privileges_Model->check_privilege('leads', 'all')) {
-            $this->db->select('leads.type, leads.name, leads.title, leads.company, leads.description, leads.email, leads.zip, leads.state, leads.address, leads.city, leads.website, leads.phone, leadssources.name as Source, leadssources.id as Source_Id');
+            $this->db->select('leads.type, leads.name, leads.title, leads.company, leads.description, leads.email, leads.zip, leads.state, leads.address, leads.city, leads.website, leads.phone, leadssources.name as Source, leadssources.id as Source_Id, staff.staffname as Staff Name, staff.id as Staff_Id');
             $this->db->join('leadssources', 'leads.source = leadssources.id', 'left');
+            $this->db->join('staff', 'leads.staff_id = staff.id', 'left');
             $q = $this->db->get_where('leads', array(''));
         } else if ($this->Privileges_Model->check_privilege('leads', 'own')) {
-            $this->db->select('leads.type, leads.name, leads.title, leads.company, leads.description, leads.email, leads.zip, leads.state, leads.address, leads.city, leads.website, leads.phone, leadssources.name as Source, leadssources.id as Source_Id');
+            $this->db->select('leads.type, leads.name, leads.title, leads.company, leads.description, leads.email, leads.zip, leads.state, leads.address, leads.city, leads.website, leads.phone, leadssources.name as Source, leadssources.id as Source_Id, staff.staffname as Staff Name, staff.id as Staff_Id');
             $this->db->join('leadssources', 'leads.source = leadssources.id', 'left');
+            $this->db->join('staff', 'leads.staff_id = staff.id', 'left');
             $q = $this->db->get_where('leads', '(leads.staff_id=' . $this->session->usr_id . ' OR leads.assigned_id=' . $this->session->usr_id . ')');
         }
-
+            //print_r($this->db->last_query());
         $delimiter = ",";
         $nuline = "\r\n";
         force_download('Leads.csv', $this->dbutil->csv_from_result($q, $delimiter, $nuline));
+        
     }
 
     public function remove_converted($id)
