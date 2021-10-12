@@ -88,6 +88,9 @@ class Leads_Model extends CI_Model {
 	}
 
 	function check_duplicate_lead($email) {
+		if(!$email)
+		return true;
+		
 		$total = $this->db->get_where( 'leads', array('email' => $email ))->num_rows();
 		//print_r($this->db->last_query());
 		if ($total > 0) {
