@@ -92,7 +92,7 @@ class Leads_Model extends CI_Model {
 		 return true;
 		
 		$total = $this->db->get_where( 'leads', array('email' => $email, 'zip' => $zip, 'phone' => $phone ))->num_rows();
-		print_r($this->db->last_query());
+		//print_r($this->db->last_query());
 		if ($total > 0) {
 			return true;
 		} else {
