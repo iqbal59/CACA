@@ -258,6 +258,7 @@ class Leads_Model extends CI_Model {
     
     function insert_csv($data) {
         $this->db->insert('leads', $data);
+		print_r($this->db->last_query());
     }
 
     function get_all_leads_by_privileges($staff_id='') {
