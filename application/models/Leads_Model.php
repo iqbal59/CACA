@@ -87,7 +87,7 @@ class Leads_Model extends CI_Model {
 		}
 	}
 
-	function check_duplicate_lead($email) {
+	function check_duplicate_lead($email, $zip, $phone) {
 		 if(!$email && !$zip && !$phone)
 		 return true;
 		

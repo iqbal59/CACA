@@ -959,7 +959,7 @@ class Leads extends CIUIS_Controller
                             'staff_id' => $this->session->userdata('usr_id'),
                             'source' => $row['source'],
                         );
-                        if (!$this->Leads_Model->check_duplicate_lead($row['email'])) {
+                        if (!$this->Leads_Model->check_duplicate_lead($row['email'], $row['zip'], $row['phone'])) {
                             $this->Leads_Model->insert_csv($insert_data);
                             //print_r($this->db->last_query());
                         } else {
