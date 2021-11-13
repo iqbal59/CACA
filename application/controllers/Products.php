@@ -40,6 +40,12 @@ class Products extends CIUIS_Controller {
 				$sale_price = $this->input->post( 'saleprice' );
 				$stock = $this->input->post( 'stock' );
 				$vat = $this->input->post( 'tax' );
+				$type = $this->input->post( 'type' );
+				$group = $this->input->post( 'group' );
+				$format = $this->input->post( 'format' );
+
+
+
 				$hasError = false;
 				$data['message'] = '';
 				if ($name == '') {
@@ -73,6 +79,9 @@ class Products extends CIUIS_Controller {
 						'sale_price' => $sale_price,
 						'stock' => $stock,
 						'vat' => $vat,
+						'type' => $type,
+						'group' => $group,
+						'format' => $format,
 						'product_created_by' => $this->session->usr_id,				
 					);
 					$products_id = $this->Products_Model->add_products( $params );
@@ -185,6 +194,21 @@ class Products extends CIUIS_Controller {
 		echo json_encode( $data_categories );
 	}
 
+	function get_product_groups() {
+		$groups = $this->Products_Model->get_product_groups();
+		$data_groups = array();
+		foreach ( $groups as $group ) {
+			$data_groups[] = array(
+				'name' => $group[ 'name' ],
+				'id' => $group[ 'id' ],
+			);
+		};
+		echo json_encode( $data_groups );
+	}
+	
+
+
+	
 	function update( $id ) {
 		if ( $this->Privileges_Model->check_privilege( 'products', 'all' ) ) {
 			$product = $this->Products_Model->get_product_by_privileges( $id );

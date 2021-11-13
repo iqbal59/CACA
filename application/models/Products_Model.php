@@ -89,6 +89,11 @@ class Products_model extends CI_Model {
 		return $this->db->get_where( 'productcategories', array( '' ) )->result_array();
 	}
 
+	function get_product_groups() {
+		$this->db->order_by( 'id', 'desc' );
+		return $this->db->get_where( 'productgroups', array( '' ) )->result_array();
+	}
+
 	function get_categories($staff_id='') {
 		$this->db->select('productcategories.name as name, COUNT(productcategories.name) as y');
 		$this->db->join( 'productcategories', 'products.categoryid = productcategories.id', 'left' );
