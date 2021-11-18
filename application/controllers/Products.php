@@ -80,7 +80,7 @@ class Products extends CIUIS_Controller {
 						'stock' => $stock,
 						'vat' => $vat,
 						'type' => $type,
-						'group' => $group,
+						'group_id' => $group,
 						'format' => $format,
 						'product_created_by' => $this->session->usr_id,				
 					);
@@ -230,6 +230,9 @@ class Products extends CIUIS_Controller {
 						$sale_price = $this->input->post( 'saleprice' );
 						$stock = $this->input->post( 'stock' );
 						$vat = $this->input->post( 'tax' );
+						$type = $this->input->post( 'type' );
+						$group = $this->input->post( 'group' );
+						$format = $this->input->post( 'format' );
 						$hasError = false;
 						$data['message'] = '';
 						if ($name == '') {
@@ -262,6 +265,9 @@ class Products extends CIUIS_Controller {
 								'sale_price' => $sale_price,
 								'stock' => $stock,
 								'vat' => $vat,
+								'type' => $type,
+								'group_id' => $group,
+								'format' => $format,
 							);
 							$this->Products_Model->update_products( $id, $params );
 							// Custom Field Post
@@ -474,6 +480,9 @@ class Products extends CIUIS_Controller {
 				'id' => $product[ 'id' ],
 				'code' => $product[ 'code' ],
 				'productname' => $product[ 'productname' ],
+				'type' => $product[ 'type' ],
+				'group' => $product[ 'group_id' ],
+				'format' => $product[ 'format' ],
 				'description' => $product[ 'description' ],
 				'productimage' => $product[ 'productimage' ],
 				'purchase_price' => $product[ 'purchase_price' ],

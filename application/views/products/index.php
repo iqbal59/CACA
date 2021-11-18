@@ -189,7 +189,7 @@
                             style="min-width: 200px;">
                             <md-option ng-value="1">Digital</md-option>
                             <md-option ng-value="2">HardPrint</md-option>
-                            <md-option ng-value="2">Both</md-option>
+                            <md-option ng-value="3">Both</md-option>
                         </md-select>
                     </md-input-container>
 

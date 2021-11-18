@@ -436,6 +436,9 @@ function Product_Controller($scope, $http, $mdSidenav, $mdDialog) {
         if (!$scope.product) {
           var dataObj = $.param({
             name: "",
+            type: "",
+            group: "",
+            format: "",
             category: "",
             purchaseprice: "",
             saleprice: "",
@@ -448,6 +451,9 @@ function Product_Controller($scope, $http, $mdSidenav, $mdDialog) {
         } else {
           var dataObj = $.param({
             name: $scope.product.productname,
+            type: $scope.product.type,
+            group: $scope.product.group,
+            format: $scope.product.format,
             categoryid: $scope.product.categoryid,
             purchaseprice: $scope.product.purchase_price,
             saleprice: $scope.product.sale_price,
